@@ -33,7 +33,7 @@
     # 탈퇴 처리
     UPDATE users SET deleted_at = NOW() WHERE email = 'value@email.com' AND deleted_at IS NULL;
 
-
+#---------------------------------------------------------------------------------
 # 레시피 조회
 
 1. 좋아요 많은 순으로 정렬
@@ -77,7 +77,7 @@
     JOIN ingredients i ON bi.ingredient_id = i.ingredient_id
     WHERE bi.board_id = 1 AND bi.deleted_at IS NULL;
 
-
+#---------------------------------------------------------------------------------
 # 게시글 조회
 
 1. 게시글 상세 조회
@@ -92,3 +92,21 @@
     JOIN users u ON c.user_id = u.user_id
     WHERE c.board_id = 1 AND c.deleted_at IS NULL
     ORDER BY c.created_at ASC;
+
+#---------------------------------------------------------------------------------
+# 레시피 검색
+
+1. 재료 이름으로 게시글 검색
+    SELECT DISTINCT b.*
+    FROM boards b
+    JOIN board_ingredients bi ON b.board_id = bi.board_id
+    JOIN ingredients i ON bi.ingredient_id = i.ingredient_id
+    WHERE i.ingredient_name LIKE CONCAT('%', '검색할재료명', '%')
+    AND b.deleted_at IS NULL
+    AND i.deleted_at IS NULL;
+
+2. 음식 이름으로 게시글 검색
+    SELECT *
+    FROM boards
+    WHERE title LIKE CONCAT('%', '검색할음식명', '%')
+    AND deleted_at IS NULL;
