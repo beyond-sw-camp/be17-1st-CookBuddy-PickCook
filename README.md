@@ -158,3 +158,52 @@ PickCook은 냉장고 속 재료를 등록해 재고와 유통기한을 관리�
 <br>
 
 
+
+<detail>
+<summary>성능 개선 사례</summary>
+## ✅ 성능 개선 사례: `nickname` 컬럼 반정규화를 통한 조회 성능 향상
+
+### 📌 배경
+
+기존에는 게시글 목록을 조회할 때 작성자의 닉네임을 가져오기 위해 `boards` 테이블과 `users` 테이블을 조인(JOIN)해야 했습니다.
+
+```sql
+SELECT b.board_id, b.title, u.nickname
+FROM boards b
+JOIN users u ON b.user_id = u.user_id
+WHERE b.user_id = ${__Random(0,10000)}
+ORDER BY b.created_at DESC
+LIMIT 20;
+```
+
+이 쿼리는 사용자 수와 게시글 수가 많아질수록 JOIN 비용이 증가하며, 부하 테스트(JMeter) 결과 응답 시간이 길어지는 현상이 발생했습니다.
+
+---
+
+### 🔧 개선 내용
+
+`boards` 테이블에 `nickname` 컬럼을 직접 추가하여, 작성 시점의 사용자 닉네임을 함께 저장하는 방식으로 **반정규화(denormalization)**를 적용했습니다.
+
+```sql
+SELECT board_id, title, user_nickname
+FROM boards
+WHERE deleted_at IS NULL
+ORDER BY created_at DESC
+LIMIT 20;
+```
+
+---
+
+### ✅ 개선 효과
+
+- **JOIN 제거로 인한 쿼리 응답 속도 향상 (JOIN → 단일 테이블 조회)**
+- JMeter 테스트 결과 TPS(초당 처리량) 증가, 평균 응답 시간 감소
+- 단일 테이블 인덱스 활용 극대화
+<img src="images/performance_improvement.png"/>
+---
+
+### ⚠️ 고려사항
+
+- 사용자 닉네임이 변경될 경우 `boards.nickname`도 함께 업데이트되어야 하며, 이는 추가적인 동기화 처리(예: 트리거나 애플리케이션 레벨 처리)가 필요합니다.
+- 데이터 중복이 발생하지만, 읽기 성능이 중요한 시나리오에서는 충분한 trade-off로 판단됩니다.
+</detail>
