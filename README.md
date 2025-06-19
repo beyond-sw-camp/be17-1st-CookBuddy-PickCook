@@ -14,9 +14,9 @@
 
 <div align="center">
 
-|   <img src="images/bibim.png" width="100" height="100"/>   |   <img src="images/tteok.png" width="100" height="100"/>   | <img src="images/icecream.png" width="100" height="100"/>  |  <img src="images/sushi.png" width="100" height="100"/>  |    <img src="images/ramen.png" width="100" height="100"/>    |     <img src="images/burger.png" width="100" height="100"/>      |
-| :--------------------------------------------------------: | :--------------------------------------------------------: | :--------------------------------------------------------: | :------------------------------------------------------: | :----------------------------------------------------------: | :--------------------------------------------------------------: |
-| 🐰 **김아영**<br/>[@thay123028](https://github.com/thay123028) | 🧶 **김영재**<br/>[@young1042](https://github.com/young1042) | ⚽ **허정빈**<br/>[@jeongbin5211](https://github.com/jeongbin5211) | 🤪 **허정우**<br/>[@JohnHeo81](https://github.com/JohnHeo81) | 🐢 **홍서연**<br/>[@seoyeon22](https://github.com/seoyeon22) |
+|   <img src="https://img3.daumcdn.net/thumb/R658x0.q70/?fname=http://t1.daumcdn.net/news/201707/25/seouleconomy/20170725083653488jtol.jpg" width="100" height="100"/>   |   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7gEFr3b-5mhcz5mp8GNK41xQauma4MPL5nA&s" width="100" height="100"/>   | <img src="https://i.namu.wiki/i/TQwZWqyeyNKMffr3p9A3Bxah_MmOR8das_6Pqr0zNfCWwQG-VjX4XyzdDSDtoW2MPcBnzFEhTVY1Ebm7lECvaw.webp" width="100" height="100"/>  |  <img src="https://i.namu.wiki/i/QJLpVKc_VfakfHP5IqhTMdGbflc4XkVSl-ggNZ4UElDl60JaMwyVrxw_ihyX12TRrurYDUxm5IbTqYqvVEruVg.webp" width="100" height="100"/>  |    <img src="https://i.pinimg.com/474x/71/c2/11/71c211b8f46513e77c33c2979e105436.jpg" width="100" height="100"/> 
+| :--------------------------------------------------------: | :--------------------------------------------------------: | :--------------------------------------------------------: | :------------------------------------------------------: | :----------------------------------------------------------: 
+| 🐰 **김아영**<br/>[@thay123028](https://github.com/thay123028) | 🧶 **김영재**<br/>[@young1042](https://github.com/young1042) | ⚽ **허정빈**<br/>[@jeongbin5211](https://github.com/jeongbin5211) | 🤪 **허정우**<br/>[@JohnHeo81](https://github.com/JohnHeo81) | 🐢 **홍서연**<br/>[@seoyeon22](https://github.com/seoyeon22)
 
 </div>
 <br>
