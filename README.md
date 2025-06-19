@@ -199,26 +199,29 @@ PickCook은 냉장고 속 재료를 등록해 재고와 유통기한을 관리�
 <details>
   <summary><b>레시피 조회</b></summary>
   <div markdown="1">
+  <br>
 
-  좋아요 많은 순으로 정렬 
+  좋아요 많은 순으로 정렬 <br>
   <img src="sql/sql 실행 확인/좋아요 많은 순으로 정렬.png" alt="식당 전체 조회" width="700" align="center" />
 
   <br>
 
-  최신순으로 정렬
+  최신순으로 정렬<br>
   <img src="sql/sql 실행 확인/최신순으로 정렬.png" alt="식당 상세 조회" width="700" align="center" />
   
-  조리 시간 짧은 순  
+  <br>
+  
+  조리 시간 짧은 순  <br>
   <img src="sql/sql 실행 확인/조리시간 짧은 순.png" alt="식당 메뉴 조회" width="700" align="center" />
 
   <br>
 
-  난이도 쉬움 -> 어려움 순
+  난이도 쉬움 -> 어려움 순<br>
   <img src="sql/sql 실행 확인/난이도순.png" alt="식당검색" width="700" align="center" />
 
   <br>
     
-  레시피 단계별 설명  
+  레시피 단계별 설명  <br>
   <img src="sql/sql 실행 확인/레시피 단계별 설명.png" alt="식당 카테고리 필터링" width="700" align="center" />
 
   <br>
