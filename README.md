@@ -157,7 +157,111 @@ PickCook은 냉장고 속 재료를 등록해 재고와 유통기한을 관리�
 
 <br>
 
+<details>
+  <summary><b>회원</b></summary>
+  <div markdown="1">
 
+  닉네임 중복확인 
+  <img src="sql/sql 실행 확인/닉네임 중복확인.png" alt="식당 전체 조회" width="700" align="center" />
+
+  <br>
+
+  이메일 중복확인 (이메일 인증 전에 중복 체크)
+  <img src="sql/sql 실행 확인/이메일 중복확인.png" alt="식당 상세 조회" width="700" align="center" />
+  
+  회원가입  
+  <img src="sql/sql 실행 확인/회원가입.png" alt="식당 메뉴 조회" width="700" align="center" />
+
+  <br>
+
+  일반 로그인
+  <img src="sql/sql 실행 확인/로그인.png" alt="식당검색" width="700" align="center" />
+
+  <br>
+    
+  회원 정보 수정  
+  <img src="sql/sql 실행 확인/회원정보 수정.png" alt="식당 카테고리 필터링" width="700" align="center" />
+
+  <br>
+  
+  회원 탈퇴 (Soft Delete 방식)  
+  <img src="sql/sql 실행 확인/회원탈퇴.png" alt="식당 지역 필터링" width="700" align="center" />
+
+  <br>
+  </div>
+</details>
+<br>
+
+<details>
+  <summary><b>레시피 조회</b></summary>
+  <div markdown="1">
+
+  좋아요 많은 순으로 정렬 
+  <img src="sql/sql 실행 확인/좋아요 많은 순으로 정렬.png" alt="식당 전체 조회" width="700" align="center" />
+
+  <br>
+
+  최신순으로 정렬
+  <img src="sql/sql 실행 확인/최신순으로 정렬.png" alt="식당 상세 조회" width="700" align="center" />
+  
+  조리 시간 짧은 순  
+  <img src="sql/sql 실행 확인/조리시간 짧은 순.png" alt="식당 메뉴 조회" width="700" align="center" />
+
+  <br>
+
+  난이도 쉬움 -> 어려움 순
+  <img src="sql/sql 실행 확인/난이도순.png" alt="식당검색" width="700" align="center" />
+
+  <br>
+    
+  레시피 단계별 설명  
+  <img src="sql/sql 실행 확인/레시피 단계별 설명.png" alt="식당 카테고리 필터링" width="700" align="center" />
+
+  <br>
+  
+  이 레시피에 사용된 재료
+  <img src="sql/sql 실행 확인/이 레시피에 사용된 재료.png" alt="식당 지역 필터링" width="700" align="center" />
+
+  <br>
+  </div>
+</details>
+<br>
+
+<details>
+  <summary><b>게시글 조회</b></summary>
+  <div markdown="1">
+
+  게시글 상세 조회 
+  <img src="sql/sql 실행 확인/게시글 상세 조회.png" alt="식당 전체 조회" width="700" align="center" />
+
+  <br>
+
+  게시글 댓글 조회
+  <img src="sql/sql 실행 확인/게시글 댓글 조회.png" alt="식당 상세 조회" width="700" align="center" />
+  
+  <br>
+  </div>
+</details>
+<br>
+<details>
+  <summary><b>게시글 조회</b></summary>
+  <div markdown="1">
+
+  재료 이름으로 게시글 검색
+  <img src="sql/sql 실행 확인/재료 이름으로 게시글 검색.png" alt="식당 전체 조회" width="700" align="center" />
+
+  <br>
+
+  음식 이름으로 게시글 검색
+  <img src="sql/sql 실행 확인/음식 이름으로 게시글 검색.png" alt="식당 상세 조회" width="700" align="center" />
+  
+  <br>
+  </div>
+</details>
+
+<br>
+
+## SQL 성능 개선
 
 <details>
 <summary>성능 개선 사례</summary>
