@@ -163,32 +163,32 @@ PickCook은 냉장고 속 재료를 등록해 재고와 유통기한을 관리�
   <div markdown="1">
   <br>
 
-  닉네임 중복확인<br>
+  ▪️ 닉네임 중복확인<br>
   <img src="sql/sql 실행 확인/닉네임 중복확인.png" alt="식당 전체 조회" width="700" align="center" />
   
   <br>
 
-  이메일 중복확인 (이메일 인증 전에 중복 체크)<br>
+  ▪️ 이메일 중복확인 (이메일 인증 전에 중복 체크)<br>
   <img src="sql/sql 실행 확인/이메일 중복확인.png" alt="식당 상세 조회" width="700" align="center" />
 
   <br>
   
-  회원가입 <br> 
+  ▪️ 회원가입 <br> 
   <img src="sql/sql 실행 확인/회원가입.png" alt="식당 메뉴 조회" width="700" align="center" />
 
   <br>
 
-  일반 로그인<br>
+  ▪️ 일반 로그인<br>
   <img src="sql/sql 실행 확인/로그인.png" alt="식당검색" width="700" align="center" />
 
   <br>
 
-  회원 정보 수정  <br>
+  ▪️ 회원 정보 수정  <br>
   <img src="sql/sql 실행 확인/회원정보 수정.png" alt="식당 카테고리 필터링" width="700" align="center" />
 
   <br>
 
-  회원 탈퇴 (Soft Delete 방식)  <br>
+  ▪️ 회원 탈퇴 (Soft Delete 방식)  <br>
   <img src="sql/sql 실행 확인/회원탈퇴.png" alt="식당 지역 필터링" width="700" align="center" />
 
   <br>
@@ -201,32 +201,32 @@ PickCook은 냉장고 속 재료를 등록해 재고와 유통기한을 관리�
   <div markdown="1">
   <br>
 
-  좋아요 많은 순으로 정렬 <br>
+  ▪️ 좋아요 많은 순으로 정렬 <br>
   <img src="sql/sql 실행 확인/좋아요 많은 순으로 정렬.png" alt="식당 전체 조회" width="700" align="center" />
 
   <br>
 
-  최신순으로 정렬<br>
+  ▪️ 최신순으로 정렬<br>
   <img src="sql/sql 실행 확인/최신순으로 정렬.png" alt="식당 상세 조회" width="700" align="center" />
   
   <br>
   
-  조리 시간 짧은 순  <br>
+  ▪️ 조리 시간 짧은 순  <br>
   <img src="sql/sql 실행 확인/조리시간 짧은 순.png" alt="식당 메뉴 조회" width="700" align="center" />
 
   <br>
 
-  난이도 쉬움 -> 어려움 순<br>
+  ▪️ 난이도 쉬움 -> 어려움 순<br>
   <img src="sql/sql 실행 확인/난이도순.png" alt="식당검색" width="700" align="center" />
 
   <br>
     
-  레시피 단계별 설명  <br>
+  ▪️ 레시피 단계별 설명  <br>
   <img src="sql/sql 실행 확인/레시피 단계별 설명.png" alt="식당 카테고리 필터링" width="700" align="center" />
 
   <br>
   
-  이 레시피에 사용된 재료
+  ▪️ 이 레시피에 사용된 재료
   <img src="sql/sql 실행 확인/이 레시피에 사용된 재료.png" alt="식당 지역 필터링" width="700" align="center" />
 
   <br>
@@ -240,12 +240,12 @@ PickCook은 냉장고 속 재료를 등록해 재고와 유통기한을 관리�
 
   <br>
 
-  게시글 상세 조회 <br>
+  ▪️ 게시글 상세 조회 <br>
   <img src="sql/sql 실행 확인/게시글 상세 조회.png" alt="식당 전체 조회" width="700" align="center" />
 
   <br>
 
-  게시글 댓글 조회<br>
+  ▪️ 게시글 댓글 조회<br>
   <img src="sql/sql 실행 확인/게시글 댓글 조회.png" alt="식당 상세 조회" width="700" align="center" />
   
   <br>
@@ -257,12 +257,12 @@ PickCook은 냉장고 속 재료를 등록해 재고와 유통기한을 관리�
   <div markdown="1">
   <br>
 
-  재료 이름으로 게시글 검색<br>
+  ▪️ 재료 이름으로 게시글 검색<br>
   <img src="sql/sql 실행 확인/재료 이름으로 게시글 검색.png" alt="식당 전체 조회" width="700" align="center" />
 
   <br>
 
-  음식 이름으로 게시글 검색<br>
+  ▪️ 음식 이름으로 게시글 검색<br>
   <img src="sql/sql 실행 확인/음식 이름으로 게시글 검색.png" alt="식당 상세 조회" width="700" align="center" />
   
   <br>
