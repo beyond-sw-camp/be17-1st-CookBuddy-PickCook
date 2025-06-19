@@ -1,13 +1,13 @@
 <br>
 
-<h1 align="center" style="color: #FFD675;">🍽️ PickCook </h1>
+<h1 align="center" style="color: #FFD675;">🍽️ PickCook </h1><br>
 
 <div align="center">
   <img src="images/pickcook_logo.png" alt="pickcook logo" height="400" align="center" />
 </div>
 
 
-<h3 align="center">5팀 - Team CookBuddy </h3>
+<h3 align="center">5팀 - Team CookBuddy </h3><br>
 
 
 ## 🕵️ 팀원 소개
@@ -19,7 +19,7 @@
 | 🐰 **김아영**<br/>[@thay123028](https://github.com/thay123028) | 🧶 **김영재**<br/>[@young1042](https://github.com/young1042) | ⚽ **허정빈**<br/>[@jeongbin5211](https://github.com/jeongbin5211) | 🤪 **허정우**<br/>[@JohnHeo81](https://github.com/JohnHeo81) | 🐢 **홍서연**<br/>[@seoyeon22](https://github.com/seoyeon22)
 
 </div>
-<br>
+<br><br><br>
 
 
 
@@ -57,16 +57,17 @@ PickCook은 냉장고 속 재료를 등록해 재고와 유통기한을 관리�
 <br>
 
 
-## ERD
-
-[ERD 다이어그램](https://www.erdcloud.com/d/i9Qf2BLnaAYZ4dCrH)
+## 🥪 ERD
 
 <img src="images/pickcook_erd.png" alt="ERD" width="800"/>
 
-## 시스템 아키텍처
+<br><br>
+
+## 🍳 시스템 아키텍처
 
 <img src="images/pickcook_system_architecture.png" alt="ERD" width="800"/>
 
+<br><br>
 
 ## 🍩 재해 복구 (DR)
 
@@ -148,11 +149,11 @@ PickCook은 냉장고 속 재료를 등록해 재고와 유통기한을 관리�
 
 ## 🥨 SQL
 
-#### ✅ DDL
+#### 🔻 DDL
 [DDL SQL 파일](/sql/DDL.sql)
 
 
-#### ✅ DML
+#### 🔻 DML
 [DML SQL 파일](/sql/DML.sql)
 
 <br>
@@ -160,31 +161,34 @@ PickCook은 냉장고 속 재료를 등록해 재고와 유통기한을 관리�
 <details>
   <summary><b>회원</b></summary>
   <div markdown="1">
-
-  닉네임 중복확인 
-  <img src="sql/sql 실행 확인/닉네임 중복확인.png" alt="식당 전체 조회" width="700" align="center" />
-
   <br>
 
-  이메일 중복확인 (이메일 인증 전에 중복 체크)
-  <img src="sql/sql 실행 확인/이메일 중복확인.png" alt="식당 상세 조회" width="700" align="center" />
+  닉네임 중복확인<br>
+  <img src="sql/sql 실행 확인/닉네임 중복확인.png" alt="식당 전체 조회" width="700" align="center" />
   
-  회원가입  
+  <br>
+
+  이메일 중복확인 (이메일 인증 전에 중복 체크)<br>
+  <img src="sql/sql 실행 확인/이메일 중복확인.png" alt="식당 상세 조회" width="700" align="center" />
+
+  <br>
+  
+  회원가입 <br> 
   <img src="sql/sql 실행 확인/회원가입.png" alt="식당 메뉴 조회" width="700" align="center" />
 
   <br>
 
-  일반 로그인
+  일반 로그인<br>
   <img src="sql/sql 실행 확인/로그인.png" alt="식당검색" width="700" align="center" />
 
   <br>
-    
-  회원 정보 수정  
+
+  회원 정보 수정  <br>
   <img src="sql/sql 실행 확인/회원정보 수정.png" alt="식당 카테고리 필터링" width="700" align="center" />
 
   <br>
-  
-  회원 탈퇴 (Soft Delete 방식)  
+
+  회원 탈퇴 (Soft Delete 방식)  <br>
   <img src="sql/sql 실행 확인/회원탈퇴.png" alt="식당 지역 필터링" width="700" align="center" />
 
   <br>
@@ -231,12 +235,14 @@ PickCook은 냉장고 속 재료를 등록해 재고와 유통기한을 관리�
   <summary><b>게시글 조회</b></summary>
   <div markdown="1">
 
-  게시글 상세 조회 
+  <br>
+
+  게시글 상세 조회 <br>
   <img src="sql/sql 실행 확인/게시글 상세 조회.png" alt="식당 전체 조회" width="700" align="center" />
 
   <br>
 
-  게시글 댓글 조회
+  게시글 댓글 조회<br>
   <img src="sql/sql 실행 확인/게시글 댓글 조회.png" alt="식당 상세 조회" width="700" align="center" />
   
   <br>
@@ -246,13 +252,14 @@ PickCook은 냉장고 속 재료를 등록해 재고와 유통기한을 관리�
 <details>
   <summary><b>게시글 조회</b></summary>
   <div markdown="1">
+  <br>
 
-  재료 이름으로 게시글 검색
+  재료 이름으로 게시글 검색<br>
   <img src="sql/sql 실행 확인/재료 이름으로 게시글 검색.png" alt="식당 전체 조회" width="700" align="center" />
 
   <br>
 
-  음식 이름으로 게시글 검색
+  음식 이름으로 게시글 검색<br>
   <img src="sql/sql 실행 확인/음식 이름으로 게시글 검색.png" alt="식당 상세 조회" width="700" align="center" />
   
   <br>
@@ -261,15 +268,11 @@ PickCook은 냉장고 속 재료를 등록해 재고와 유통기한을 관리�
 
 <br>
 
-## SQL 성능 개선
+## 🍫 SQL 성능 개선 :  `nickname` 컬럼 반정규화를 통한 조회 성능 향상
 
-<details>
-<summary>성능 개선 사례</summary>
-<div markdown="1">
 
-## ✅ 성능 개선 사례: `nickname` 컬럼 반정규화를 통한 조회 성능 향상
 
-### 📌 배경
+### 🔻 배경
 
 기존에는 게시글 목록을 조회할 때 작성자의 닉네임을 가져오기 위해 `boards` 테이블과 `users` 테이블을 조인(JOIN)해야 했습니다.
 
@@ -284,9 +287,11 @@ LIMIT 20;
 
 이 쿼리는 사용자 수와 게시글 수가 많아질수록 JOIN 비용이 증가하며, 부하 테스트(JMeter) 결과 응답 시간이 길어지는 현상이 발생했습니다.
 
+<br>
+
 ---
 
-### 🔧 개선 내용
+### 🔻 개선 내용
 
 `boards` 테이블에 `nickname` 컬럼을 직접 추가하여, 작성 시점의 사용자 닉네임을 함께 저장하는 방식으로 **반정규화(denormalization)**를 적용했습니다.
 
@@ -298,19 +303,26 @@ ORDER BY created_at DESC
 LIMIT 20;
 ```
 
+<br>
+
 ---
 
-### ✅ 개선 효과
+### 🔻 개선 효과
 
 - **JOIN 제거로 인한 쿼리 응답 속도 향상 (JOIN → 단일 테이블 조회)**
 - JMeter 테스트 결과 TPS(초당 처리량) 증가, 평균 응답 시간 감소
 - 단일 테이블 인덱스 활용 극대화
+<br>
+
 <img src="images/performance_improvement.png"/>
+
+<br>
+
 ---
 
-### ⚠️ 고려사항
+
+### 🔻 고려사항
 
 - 사용자 닉네임이 변경될 경우 `boards.nickname`도 함께 업데이트되어야 하며, 이는 추가적인 동기화 처리(예: 트리거나 애플리케이션 레벨 처리)가 필요합니다.
 - 데이터 중복이 발생하지만, 읽기 성능이 중요한 시나리오에서는 충분한 trade-off로 판단됩니다.
 <div>
-</details>
