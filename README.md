@@ -65,7 +65,7 @@ PickCook은 냉장고 속 재료를 등록해 재고와 유통기한을 관리�
 
 ## 🍳 시스템 아키텍처
 
-<img src="images/pickcook_system_architecture.png" alt="ERD" width="800"/>
+<img src="images/pickcook_system_architecture.jpg" alt="ERD" width="800"/>
 
 <br><br>
 
