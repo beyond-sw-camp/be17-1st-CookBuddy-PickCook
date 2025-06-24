@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/header.css" rel="stylesheet">
     <title>PickCook - 나의 냉장고</title>
     <style>
         /* ========== 전역 스타일 ========== */
@@ -23,116 +24,6 @@
             color: inherit;
         }
         
-        /* ========== 헤더 스타일 ========== */
-        .header {
-            background-color: white;
-            border-bottom: 1px solid #e0e0e0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        .header-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 60px;
-        }
-        
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #e53935;
-        }
-        
-        .nav-menu {
-            display: flex;
-            gap: 40px;
-            margin-left: 60px;
-        }
-        
-        .nav-menu a {
-            color: #999;
-            font-size: 15px;
-            transition: color 0.2s;
-        }
-        
-        .nav-menu a:hover {
-            color: #333;
-        }
-        
-        .nav-menu a.active {
-            color: #333;
-            font-weight: 500;
-        }
-        
-        .search-bar {
-            flex: 1;
-            max-width: 400px;
-            margin: 0 40px;
-            position: relative;
-        }
-        
-        .search-bar input {
-            width: 100%;
-            padding: 8px 40px 8px 16px;
-            border: 1px solid #e0e0e0;
-            border-radius: 4px;
-            font-size: 14px;
-            background-color: #fafafa;
-        }
-        
-        .search-bar input:focus {
-            outline: none;
-            border-color: #e53935;
-            background-color: white;
-        }
-        
-        .search-bar button {
-            position: absolute;
-            right: 8px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            color: #999;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 24px;
-        }
-        
-        .header-right a {
-            color: #999;
-            font-size: 14px;
-        }
-        
-        .header-right a:hover {
-            color: #333;
-        }
-        
-        .write-btn {
-            background-color: #e53935;
-            color: white !important;
-            padding: 8px 16px;
-            border-radius: 4px;
-            font-size: 14px;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-        
-        .write-btn:hover {
-            background-color: #d32f2f;
-        }
         
         /* ========== 메인 컨테이너 ========== */
         .main-container {
@@ -408,9 +299,8 @@
 <body>
     <!-- ========== 헤더 섹션 ========== -->
     <header class="header">
-        <div class="header-container">
-            <a href="#" class="logo">PickCook</a>
-            
+        <div class="header-top">
+            <a href="/index.html" class="logo">PickCook</a>
             <nav class="nav-menu">
                 <a href="/index.html" class="active">홈</a>
                 <a href="/refrigerator.html">냉장고</a>
@@ -418,15 +308,13 @@
                 <a href="#">쇼핑</a>
                 <a href="#">커뮤니티</a>
             </nav>
-            
             <div class="search-bar">
-                <input type="text" placeholder="요리검색">
-                <button type="submit">🔍</button>
+                <input type="text" placeholder="통합검색">
+                <span>🔍</span>
             </div>
-            
             <div class="header-right">
-                <a href="#">로그인</a>
-                <a href="#">회원가입</a>
+                <a href="/login.html">로그인</a>
+                <a href="/signup.html">회원가입</a>
                 <a href="#">고객센터</a>
                 <a href="#" class="write-btn">글쓰기 ▼</a>
             </div>
