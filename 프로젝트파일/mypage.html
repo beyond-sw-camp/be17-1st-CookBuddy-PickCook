@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>마이페이지 | 오늘의레시피</title>
+  <link rel="stylesheet" href="/css/style_optimized.css">
+</head>
+<body>
+  <!-- 헤더 -->
+  <header class="header">
+    <div class="header-content">
+      <a href="/index.html" class="logo">PickCook</a>
+      <nav class="nav-menu">
+        <a href="/index.html">홈</a>
+        <a href="#">냉장고</a>
+        <a href="#">쇼핑</a>
+        <a href="#">커뮤니티</a>
+      </nav>
+      <div class="search-bar">
+        <span>🔍</span>
+        <input type="text" placeholder="통합검색">
+      </div>
+      <div class="header-icons">
+        <a href="#">🔖</a>
+        <a href="#">🔔</a>
+        <a href="#">🛒</a>
+      </div>
+      <div class="user-menu">
+        <div class="user-avatar"></div>
+        <a href="#" class="login-btn">글쓰기 ▼</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 메인 컨테이너 -->
+  <div class="main-container">
+    <!-- 프로필 섹션 -->
+    <div class="profile-section">
+      <div class="profile-avatar">👨‍🍳</div>
+      <h1 class="profile-name">허정빈10</h1>
+      <p style="color: #757575; margin-top: 8px;">팔로워 0 · 팔로잉 0</p>
+
+      <div class="profile-stats">
+        <div class="stat-item">
+          <div class="stat-value">45</div>
+          <div class="stat-label">내 레시피</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">128</div>
+          <div class="stat-label">스크랩</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">23</div>
+          <div class="stat-label">좋아요</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 탭 메뉴 -->
+    <div class="tab-menu">
+      <button class="tab-item active" onclick="showTab('cart')">장바구니</button>
+      <button class="tab-item" onclick="showTab('info')">회원정보 관리</button>
+      <button class="tab-item" onclick="showTab('posts')">내 게시글 관리</button>
+      <button class="tab-item" onclick="showTab('orders')">구매 목록</button>
+    </div>
+
+    <!-- 장바구니 탭 -->
+    <div id="cart" class="tab-content active">
+      <h2 style="margin-bottom: 24px;">장바구니</h2>
+      <div class="cart-list">
+        <div class="cart-item">
+          <div class="cart-item-image">
+            <img src="https://via.placeholder.com/100x100/fff3e0/ff9800?text=밀키트" alt="밀키트">
+          </div>
+          <div class="cart-item-info">
+            <h3 class="cart-item-title">[프레시지] 매콤 떡볶이 밀키트</h3>
+            <p class="cart-item-desc">2인분 / 매운맛 / 당일배송</p>
+            <p class="cart-item-price">15,900원</p>
+          </div>
+          <div class="cart-item-actions">
+            <div class="quantity-control">
+              <button class="quantity-btn">-</button>
+              <div class="quantity-value">1</div>
+              <button class="quantity-btn">+</button>
+            </div>
+            <button class="remove-btn">삭제</button>
+          </div>
+        </div>
+
+        <div class="cart-item">
+          <div class="cart-item-image">
+            <img src="https://via.placeholder.com/100x100/e8f5e9/4caf50?text=채소" alt="채소">
+          </div>
+          <div class="cart-item-info">
+            <h3 class="cart-item-title">유기농 채소 모음 세트</h3>
+            <p class="cart-item-desc">상추, 깻잎, 쌈채소 / 신선배송</p>
+            <p class="cart-item-price">12,500원</p>
+          </div>
+          <div class="cart-item-actions">
+            <div class="quantity-control">
+              <button class="quantity-btn">-</button>
+              <div class="quantity-value">2</div>
+              <button class="quantity-btn">+</button>
+            </div>
+            <button class="remove-btn">삭제</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 회원정보 관리 탭 -->
+    <div id="info" class="tab-content">
+      <h2 style="margin-bottom: 24px;">회원정보 관리</h2>
+      <form class="info-form">
+        <div class="form-group">
+          <label class="form-label">이름</label>
+          <input type="text" class="form-input" value="허정빈">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">이메일</label>
+          <input type="email" class="form-input" value="heojb10@example.com">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">휴대폰 번호</label>
+          <input type="tel" class="form-input" value="010-1234-5678">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">주소</label>
+          <input type="text" class="form-input" placeholder="주소를 입력하세요">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">생년월일</label>
+            <input type="date" class="form-input">
+          </div>
+          <div class="form-group">
+            <label class="form-label">성별</label>
+            <select class="form-input">
+              <option>선택</option>
+              <option>남성</option>
+              <option>여성</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">관심 요리 분야</label>
+          <div style="display: flex; gap: 12px; margin-top: 12px;">
+            <label style="display: flex; align-items: center; gap: 6px;">
+              <input type="checkbox" checked> 한식
+            </label>
+            <label style="display: flex; align-items: center; gap: 6px;">
+              <input type="checkbox"> 양식
+            </label>
+            <label style="display: flex; align-items: center; gap: 6px;">
+              <input type="checkbox" checked> 중식
+            </label>
+            <label style="display: flex; align-items: center; gap: 6px;">
+              <input type="checkbox"> 일식
+            </label>
+            <label style="display: flex; align-items: center; gap: 6px;">
+              <input type="checkbox" checked> 디저트
+            </label>
+          </div>
+        </div>
+
+        <button type="submit" class="save-btn">저장하기</button>
+      </form>
+    </div>
+
+    <!-- 내 게시글 관리 탭 -->
+    <div id="posts" class="tab-content">
+      <h2 style="margin-bottom: 24px;">내 게시글 관리</h2>
+      <div class="post-tabs">
+        <button class="post-tab active">레시피 (12)</button>
+        <button class="post-tab">요리팁 (8)</button>
+        <button class="post-tab">질문 (5)</button>
+        <button class="post-tab">댓글 (34)</button>
+      </div>
+
+      <div class="post-list">
+        <div class="post-item">
+          <div class="post-thumbnail">
+            <img src="https://via.placeholder.com/80x80/ffebcd/8b4513?text=김치찌개" alt="김치찌개">
+          </div>
+          <div class="post-info">
+            <h3 class="post-title">초보도 쉽게 만드는 김치찌개 레시피</h3>
+            <p class="post-meta">2024.06.15 · 조회 234 · 좋아요 45 · 댓글 12</p>
+          </div>
+          <div class="post-actions">
+            <button class="edit-btn">수정</button>
+            <button class="delete-btn">삭제</button>
+          </div>
+        </div>
+
+        <div class="post-item">
+          <div class="post-thumbnail">
+            <img src="https://via.placeholder.com/80x80/e3f2fd/2196f3?text=파스타" alt="파스타">
+          </div>
+          <div class="post-info">
+            <h3 class="post-title">10분 완성! 원팬 파스타 만들기</h3>
+            <p class="post-meta">2024.06.10 · 조회 567 · 좋아요 89 · 댓글 23</p>
+          </div>
+          <div class="post-actions">
+            <button class="edit-btn">수정</button>
+            <button class="delete-btn">삭제</button>
+          </div>
+        </div>
+
+        <div class="post-item">
+          <div class="post-thumbnail">
+            <img src="https://via.placeholder.com/80x80/fce4ec/e91e63?text=디저트" alt="디저트">
+          </div>
+          <div class="post-info">
+            <h3 class="post-title">노오븐! 딸기 티라미수 만들기</h3>
+            <p class="post-meta">2024.06.05 · 조회 890 · 좋아요 156 · 댓글 45</p>
+          </div>
+          <div class="post-actions">
+            <button class="edit-btn">수정</button>
+            <button class="delete-btn">삭제</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 구매 목록 탭 -->
+    <div id="orders" class="tab-content">
+      <h2 style="margin-bottom: 24px;">구매 목록</h2>
+      <div class="order-list">
+        <div class="order-item">
+          <div class="order-header">
+            <div>
+              <span class="order-number">주문번호: 20240620-1234567</span>
+              <span class="order-date"> · 2024.06.20</span>
+            </div>
+            <span class="order-status completed">배송완료</span>
+          </div>
+          <div class="order-products">
+            <div class="order-product">
+              <div class="order-product-image">
+                <img src="https://via.placeholder.com/80x80/fff3e0/ff9800?text=밀키트" alt="밀키트">
+              </div>
+              <div class="order-product-info">
+                <div class="order-product-name">[쿡킷] 매콤 제육볶음 밀키트</div>
+                <div class="order-product-option">2인분 / 1개</div>
+              </div>
+              <div class="order-product-price">
+                <div style="font-weight: 700;">18,900원</div>
+              </div>
+            </div>
+            <div class="order-product">
+              <div class="order-product-image">
+                <img src="https://via.placeholder.com/80x80/e8f5e9/4caf50?text=재료" alt="재료">
+              </div>
+              <div class="order-product-info">
+                <div class="order-product-name">신선 야채 세트</div>
+                <div class="order-product-option">혼합구성 / 1세트</div>
+              </div>
+              <div class="order-product-price">
+                <div style="font-weight: 700;">9,900원</div>
+              </div>
+            </div>
+          </div>
+          <div class="order-total">
+            <span class="order-total-label">총 결제금액</span>
+            <span class="order-total-price">28,800원</span>
+          </div>
+        </div>
+
+        <div class="order-item">
+          <div class="order-header">
+            <div>
+              <span class="order-number">주문번호: 20240615-9876543</span>
+              <span class="order-date"> · 2024.06.15</span>
+            </div>
+            <span class="order-status shipping">배송중</span>
+          </div>
+          <div class="order-products">
+            <div class="order-product">
+              <div class="order-product-image">
+                <img src="https://via.placeholder.com/80x80/e1f5fe/0288d1?text=조미료" alt="조미료">
+              </div>
+              <div class="order-product-info">
+                <div class="order-product-name">프리미엄 조미료 세트</div>
+                <div class="order-product-option">5종 세트 / 1박스</div>
+              </div>
+              <div class="order-product-price">
+                <div style="font-weight: 700;">35,000원</div>
+              </div>
+            </div>
+          </div>
+          <div class="order-total">
+            <span class="order-total-label">총 결제금액</span>
+            <span class="order-total-price">35,000원</span>
+          </div>
+        </div>
+
+        <div class="order-item">
+          <div class="order-header">
+            <div>
+              <span class="order-number">주문번호: 20240610-5432198</span>
+              <span class="order-date"> · 2024.06.10</span>
+            </div>
+            <span class="order-status preparing">상품준비중</span>
+          </div>
+          <div class="order-products">
+            <div class="order-product">
+              <div class="order-product-image">
+                <img src="https://via.placeholder.com/80x80/fce4ec/c2185b?text=디저트" alt="디저트">
+              </div>
+              <div class="order-product-info">
+                <div class="order-product-name">수제 마카롱 세트</div>
+                <div class="order-product-option">12구 / 혼합맛</div>
+              </div>
+              <div class="order-product-price">
+                <div style="font-weight: 700;">24,000원</div>
+              </div>
+            </div>
+            <div class="order-product">
+              <div class="order-product-image">
+                <img src="https://via.placeholder.com/80x80/fff8e1/ffc107?text=베이킹" alt="베이킹">
+              </div>
+              <div class="order-product-info">
+                <div class="order-product-name">베이킹 재료 키트</div>
+                <div class="order-product-option">쿠키만들기 세트</div>
+              </div>
+              <div class="order-product-price">
+                <div style="font-weight: 700;">18,500원</div>
+              </div>
+            </div>
+          </div>
+          <div class="order-total">
+            <span class="order-total-label">총 결제금액</span>
+            <span class="order-total-price">42,500원</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>고객센터 ></h3>
+        <p class="footer-phone">1670-0876 <span>09:00~18:00</span></p>
+        <ul>
+          <li>평일: 전체 문의 상담</li>
+          <li>토요일, 공휴일: 오늘의레시피 직접배송 주문건 상담</li>
+          <li>일요일: 휴무</li>
+        </ul>
+        <p class="footer-time">카톡 상담(평일 09:00~18:00)</p>
+        <button class="footer-btn">이메일 문의</button>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-column">
+          <a href="#">회사소개</a>
+          <a href="#">채용정보</a>
+          <a href="#">이용약관</a>
+          <a href="#">개인정보 처리방침</a>
+          <a href="#">공지사항</a>
+          <a href="#">건의보호센터</a>
+        </div>
+
+        <div class="footer-column">
+          <a href="#">입점신청</a>
+          <a href="#">제휴/광고 문의</a>
+          <a href="#">요리파트너 안내</a>
+          <a href="#">파트너 개인정보 처리방침</a>
+          <a href="#">상품광고 소개</a>
+          <a href="#">고객의 소리</a>
+        </div>
+      </div>
+
+      <div class="footer-info">
+        <p>(주)오늘의레시피 | 대표이사 김요리 | 서울 강남구 테헤란로 123 요리빌딩 15층</p>
+        <p>contact@todayrecipe.net | 사업자등록번호 123-45-67890 <a href="#">사업자정보확인</a></p>
+        <p>통신판매업신고번호 제2024-서울강남-1234호</p>
+
+        <p class="footer-notice">고객님이 현금결제한 금액에 대해 우리은행과 채무지급보증 계약을 체결하여 안전거래를 보장하고 있습니다. <a href="#">서비스가입사실확인</a></p>
+
+        <div class="footer-certificates">
+          <img src="https://via.placeholder.com/100x40/ffffff/424242?text=ISMS" alt="ISMS">
+          <img src="https://via.placeholder.com/100x40/ffffff/424242?text=HACCP" alt="HACCP">
+        </div>
+
+        <p class="footer-desc">(주)오늘의레시피는 통신판매중개자로 거래 당사자가 아니므로, 판매자가 등록한 상품정보 및 거래 등에 대해 책임을 지지 않습니다.</p>
+
+        <div class="footer-social">
+          <a href="#">📧</a>
+          <a href="#">📷</a>
+          <a href="#">📘</a>
+          <a href="#">📺</a>
+          <a href="#">📝</a>
+        </div>
+
+        <p class="footer-copyright">Copyright 2024. todayrecipe, Co., Ltd. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // 탭 전환 함수
+    function showTab(tabName) {
+      // 모든 탭 컨텐츠 숨기기
+      const contents = document.querySelectorAll('.tab-content');
+      contents.forEach(content => {
+        content.classList.remove('active');
+      });
+
+      // 모든 탭 버튼 비활성화
+      const tabs = document.querySelectorAll('.tab-item');
+      tabs.forEach(tab => {
+        tab.classList.remove('active');
+      });
+
+      // 선택한 탭 활성화
+      document.getElementById(tabName).classList.add('active');
+
+      // 선택한 탭 버튼 활성화
+      const activeTab = Array.from(tabs).find(tab =>
+        tab.textContent.includes(
+          tabName === 'cart' ? '장바구니' :
+            tabName === 'info' ? '회원정보' :
+              tabName === 'posts' ? '게시글' : '구매'
+        )
+      );
+      if (activeTab) activeTab.classList.add('active');
+    }
+
+    // 게시글 탭 전환
+    const postTabs = document.querySelectorAll('.post-tab');
+    postTabs.forEach(tab => {
+      tab.addEventListener('click', function () {
+        postTabs.forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+
+    // 수량 조절 기능
+    document.querySelectorAll('.quantity-btn').forEach(btn => {
+      btn.addEventListener('click', function () {
+        const parent = this.parentElement;
+        const valueElement = parent.querySelector('.quantity-value');
+        let value = parseInt(valueElement.textContent);
+
+        if (this.textContent === '+') {
+          value++;
+        } else if (this.textContent === '-' && value > 1) {
+          value--;
+        }
+
+        valueElement.textContent = value;
+      });
+    });
+
+    // 삭제 버튼 기능
+    document.querySelectorAll('.remove-btn, .delete-btn').forEach(btn => {
+      btn.addEventListener('click', function () {
+        if (confirm('정말 삭제하시겠습니까?')) {
+          const item = this.closest('.cart-item, .post-item');
+          if (item) {
+            item.style.transition = 'opacity 0.3s';
+            item.style.opacity = '0';
+            setTimeout(() => item.remove(), 300);
+          }
+        }
+      });
+    });
+
+    // 폼 제출 방지 (데모용)
+    document.querySelector('.info-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      alert('회원정보가 저장되었습니다.');
+    });
+  </script>
+</body>
+
+</html>

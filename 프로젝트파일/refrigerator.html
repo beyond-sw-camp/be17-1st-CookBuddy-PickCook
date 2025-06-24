@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PickCook - 나의 냉장고</title>
+    <style>
+        /* ========== 전역 스타일 ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        /* ========== 헤더 스타일 ========== */
+        .header {
+            background-color: white;
+            border-bottom: 1px solid #e0e0e0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 60px;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #e53935;
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 40px;
+            margin-left: 60px;
+        }
+        
+        .nav-menu a {
+            color: #999;
+            font-size: 15px;
+            transition: color 0.2s;
+        }
+        
+        .nav-menu a:hover {
+            color: #333;
+        }
+        
+        .nav-menu a.active {
+            color: #333;
+            font-weight: 500;
+        }
+        
+        .search-bar {
+            flex: 1;
+            max-width: 400px;
+            margin: 0 40px;
+            position: relative;
+        }
+        
+        .search-bar input {
+            width: 100%;
+            padding: 8px 40px 8px 16px;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            font-size: 14px;
+            background-color: #fafafa;
+        }
+        
+        .search-bar input:focus {
+            outline: none;
+            border-color: #e53935;
+            background-color: white;
+        }
+        
+        .search-bar button {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #999;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+        
+        .header-right a {
+            color: #999;
+            font-size: 14px;
+        }
+        
+        .header-right a:hover {
+            color: #333;
+        }
+        
+        .write-btn {
+            background-color: #e53935;
+            color: white !important;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .write-btn:hover {
+            background-color: #d32f2f;
+        }
+        
+        /* ========== 메인 컨테이너 ========== */
+        .main-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 30px;
+        }
+        
+        /* ========== 냉장고 섹션 ========== */
+        .fridge-section {
+            background-color: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .fridge-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .fridge-compartment {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .compartment-header {
+            background-color: #e53935;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            display: inline-block;
+            margin-bottom: 16px;
+        }
+        
+        .compartment-header.freezer {
+            background-color: #1976d2;
+        }
+        
+        .ingredient-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .ingredient-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .ingredient-item:last-child {
+            border-bottom: none;
+        }
+        
+        .ingredient-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .ingredient-date {
+            color: #999;
+            font-size: 13px;
+        }
+        
+        .ingredient-name {
+            font-weight: 500;
+        }
+        
+        .ingredient-quantity {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .quantity-badge {
+            background-color: #f5f5f5;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .delete-btn {
+            color: #999;
+            cursor: pointer;
+            font-size: 18px;
+            padding: 4px;
+        }
+        
+        .delete-btn:hover {
+            color: #e53935;
+        }
+        
+        /* ========== 사이드바 섹션 ========== */
+        .sidebar {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+        
+        .add-ingredient-section {
+            background-color: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.2s;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #e53935;
+        }
+        
+        .form-select {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            background-color: white;
+            cursor: pointer;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            background-color: #e53935;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .submit-btn:hover {
+            background-color: #d32f2f;
+        }
+        
+        /* ========== 푸터 스타일 ========== */
+        .footer {
+            background-color: #fafafa;
+            margin-top: 80px;
+            padding: 40px 0 30px;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+        
+        .footer-logo {
+            font-size: 18px;
+            font-weight: bold;
+            color: #e53935;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links a {
+            color: #666;
+            font-size: 13px;
+        }
+        
+        .footer-links a:hover {
+            color: #333;
+        }
+        
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .footer-social a {
+            color: #999;
+            font-size: 20px;
+            transition: color 0.2s;
+        }
+        
+        .footer-social a:hover {
+            color: #e53935;
+        }
+        
+        .footer-copyright {
+            color: #999;
+            font-size: 12px;
+            margin-top: 20px;
+        }
+        
+        /* ========== 반응형 스타일 ========== */
+        @media (max-width: 1024px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                position: static;
+            }
+            
+            .fridge-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .search-bar {
+                width: auto;
+                flex: 1;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ========== 헤더 섹션 ========== -->
+    <header class="header">
+        <div class="header-container">
+            <a href="#" class="logo">PickCook</a>
+            
+            <nav class="nav-menu">
+                <a href="/index.html" class="active">홈</a>
+                <a href="/refrigerator.html">냉장고</a>
+                <a href="/recipe.html">레시피</a>
+                <a href="#">쇼핑</a>
+                <a href="#">커뮤니티</a>
+            </nav>
+            
+            <div class="search-bar">
+                <input type="text" placeholder="요리검색">
+                <button type="submit">🔍</button>
+            </div>
+            
+            <div class="header-right">
+                <a href="#">로그인</a>
+                <a href="#">회원가입</a>
+                <a href="#">고객센터</a>
+                <a href="#" class="write-btn">글쓰기 ▼</a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- ========== 메인 컨텐츠 ========== -->
+    <main class="main-container">
+        <!-- 냉장고 섹션 -->
+        <section class="fridge-section">
+            <h2 class="section-title">나의 냉장고</h2>
+            
+            <div class="fridge-container">
+                <!-- 냉장실 -->
+                <div class="fridge-compartment">
+                    <span class="compartment-header">냉장실</span>
+                    <div class="ingredient-list">
+                        <div class="ingredient-item">
+                            <div class="ingredient-info">
+                                <span class="ingredient-date">08.24</span>
+                                <span class="ingredient-name">계란</span>
+                            </div>
+                            <div class="ingredient-quantity">
+                                <span class="quantity-badge">2개</span>
+                                <span class="delete-btn">×</span>
+                            </div>
+                        </div>
+                        
+                        <div class="ingredient-item">
+                            <div class="ingredient-info">
+                                <span class="ingredient-date">08.24</span>
+                                <span class="ingredient-name">계란</span>
+                            </div>
+                            <div class="ingredient-quantity">
+                                <span class="quantity-badge">2개</span>
+                                <span class="delete-btn">×</span>
+                            </div>
+                        </div>
+                        
+                        <div class="ingredient-item">
+                            <div class="ingredient-info">
+                                <span class="ingredient-date">08.24</span>
+                                <span class="ingredient-name">계란</span>
+                            </div>
+                            <div class="ingredient-quantity">
+                                <span class="quantity-badge">2개</span>
+                                <span class="delete-btn">×</span>
+                            </div>
+                        </div>
+                        
+                        <div class="ingredient-item">
+                            <div class="ingredient-info">
+                                <span class="ingredient-date">08.24</span>
+                                <span class="ingredient-name">계란</span>
+                            </div>
+                            <div class="ingredient-quantity">
+                                <span class="quantity-badge">2개</span>
+                                <span class="delete-btn">×</span>
+                            </div>
+                        </div>
+                        
+                        <div class="ingredient-item">
+                            <div class="ingredient-info">
+                                <span class="ingredient-date">08.24</span>
+                                <span class="ingredient-name">계란</span>
+                            </div>
+                            <div class="ingredient-quantity">
+                                <span class="quantity-badge">2개</span>
+                                <span class="delete-btn">×</span>
+                            </div>
+                        </div>
+                        
+                        <div class="ingredient-item">
+                            <div class="ingredient-info">
+                                <span class="ingredient-date">08.24</span>
+                                <span class="ingredient-name">계란</span>
+                            </div>
+                            <div class="ingredient-quantity">
+                                <span class="quantity-badge">2개</span>
+                                <span class="delete-btn">×</span>
+                            </div>
+                        </div>
+                        
+                        <div class="ingredient-item">
+                            <div class="ingredient-info">
+                                <span class="ingredient-date">08.24</span>
+                                <span class="ingredient-name">계란</span>
+                            </div>
+                            <div class="ingredient-quantity">
+                                <span class="quantity-badge">2개</span>
+                                <span class="delete-btn">×</span>
+                            </div>
+                        </div>
+                        
+                        <div class="ingredient-item">
+                            <div class="ingredient-info">
+                                <span class="ingredient-date">08.24</span>
+                                <span class="ingredient-name">계란</span>
+                            </div>
+                            <div class="ingredient-quantity">
+                                <span class="quantity-badge">2개</span>
+                                <span class="delete-btn">×</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 냉동실 -->
+                <div class="fridge-compartment">
+                    <span class="compartment-header freezer">냉동실</span>
+                    <div class="ingredient-list">
+                        <div class="ingredient-item">
+                            <div class="ingredient-info">
+                                <span class="ingredient-date">08.24</span>
+                                <span class="ingredient-name">계란</span>
+                            </div>
+                            <div class="ingredient-quantity">
+                                <span class="quantity-badge">2개</span>
+                                <span class="delete-btn">×</span>
+                            </div>
+                        </div>
+                        
+                        <div class="ingredient-item">
+                            <div class="ingredient-info">
+                                <span class="ingredient-date">08.24</span>
+                                <span class="ingredient-name">계란</span>
+                            </div>
+                            <div class="ingredient-quantity">
+                                <span class="quantity-badge">2개</span>
+                                <span class="delete-btn">×</span>
+                            </div>
+                        </div>
+                        
+                        <div class="ingredient-item">
+                            <div class="ingredient-info">
+                                <span class="ingredient-date">08.24</span>
+                                <span class="ingredient-name">계란</span>
+                            </div>
+                            <div class="ingredient-quantity">
+                                <span class="quantity-badge">2개</span>
+                                <span class="delete-btn">×</span>
+                            </div>
+                        </div>
+                        
+                        <div class="ingredient-item">
+                            <div class="ingredient-info">
+                                <span class="ingredient-date">08.24</span>
+                                <span class="ingredient-name">계란</span>
+                            </div>
+                            <div class="ingredient-quantity">
+                                <span class="quantity-badge">2개</span>
+                                <span class="delete-btn">×</span>
+                            </div>
+                        </div>
+                        
+                        <div class="ingredient-item">
+                            <div class="ingredient-info">
+                                <span class="ingredient-date">08.24</span>
+                                <span class="ingredient-name">계란</span>
+                            </div>
+                            <div class="ingredient-quantity">
+                                <span class="quantity-badge">2개</span>
+                                <span class="delete-btn">×</span>
+                            </div>
+                        </div>
+                        
+                        <div class="ingredient-item">
+                            <div class="ingredient-info">
+                                <span class="ingredient-date">08.24</span>
+                                <span class="ingredient-name">계란</span>
+                            </div>
+                            <div class="ingredient-quantity">
+                                <span class="quantity-badge">2개</span>
+                                <span class="delete-btn">×</span>
+                            </div>
+                        </div>
+                        
+                        <div class="ingredient-item">
+                            <div class="ingredient-info">
+                                <span class="ingredient-date">08.24</span>
+                                <span class="ingredient-name">계란</span>
+                            </div>
+                            <div class="ingredient-quantity">
+                                <span class="quantity-badge">2개</span>
+                                <span class="delete-btn">×</span>
+                            </div>
+                        </div>
+                        
+                        <div class="ingredient-item">
+                            <div class="ingredient-info">
+                                <span class="ingredient-date">08.24</span>
+                                <span class="ingredient-name">계란</span>
+                            </div>
+                            <div class="ingredient-quantity">
+                                <span class="quantity-badge">2개</span>
+                                <span class="delete-btn">×</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 사이드바 -->
+        <aside class="sidebar">
+            <div class="add-ingredient-section">
+                <h3 class="section-title">재료 추가하기</h3>
+                
+                <form>
+                    <div class="form-group">
+                        <label class="form-label">재료명</label>
+                        <input type="text" class="form-input" placeholder="ex) 계란, 우유">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">수량</label>
+                        <input type="text" class="form-input" placeholder="ex) 2개, 500g">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">유통기한</label>
+                        <input type="date" class="form-input">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">카테고리</label>
+                        <select class="form-select">
+                            <option>유제품</option>
+                            <option>육류</option>
+                            <option>해산물</option>
+                            <option>채소</option>
+                            <option>과일</option>
+                            <option>기타</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">보관 위치</label>
+                        <select class="form-select">
+                            <option>냉장실</option>
+                            <option>냉동실</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">추가하기</button>
+                </form>
+            </div>
+        </aside>
+    </main>
+    
+    <!-- ========== 푸터 섹션 ========== -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-logo">PickCook</div>
+            
+            <div class="footer-links">
+                <a href="#">이용약관</a>
+                <a href="#">문의</a>
+                <a href="#">이용약관</a>
+                <a href="#">개인정보처리방침</a>
+                <a href="#">채용정보 문의</a>
+                <a href="#">상품등록 소개</a>
+            </div>
+            
+            <div class="footer-social">
+                <a href="#">📧</a>
+                <a href="#">📘</a>
+                <a href="#">🐦</a>
+                <a href="#">✉️</a>
+            </div>
+            
+            <div class="footer-copyright">
+                © 2023 PickCook. All rights reserved.
+            </div>
+        </div>
+    </footer>
+    
+    <!-- ========== JavaScript ========== -->
+    <script>
+        // 삭제 버튼 기능
+        document.querySelectorAll('.delete-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                if (confirm('이 재료를 삭제하시겠습니까?')) {
+                    this.closest('.ingredient-item').remove();
+                }
+            });
+        });
+        
+        // 폼 제출 방지 (데모용)
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('재료가 추가되었습니다!');
+        });
+    </script>
+</body>
+</html>
