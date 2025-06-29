@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,14 +11,14 @@
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             background-color: #f7f9fa;
             color: #424242;
         }
-        
-         /* 헤더 스타일 */
+
+        /* 헤더 스타일 */
         .header {
             background-color: white;
             border-bottom: 1px solid #eaedef;
@@ -25,7 +26,7 @@
             top: 0;
             z-index: 100;
         }
-        
+
         .header-top {
             display: flex;
             align-items: center;
@@ -34,7 +35,7 @@
             max-width: 1256px;
             margin: 0 auto;
         }
-        
+
         .logo {
             font-size: 24px;
             font-weight: bold;
@@ -42,25 +43,25 @@
             text-decoration: none;
             margin-right: 30px;
         }
-        
+
         .nav-menu {
             display: flex;
             gap: 30px;
             align-items: center;
             flex: 1;
         }
-        
+
         .nav-menu a {
             text-decoration: none;
             color: #424242;
             font-size: 16px;
             font-weight: 500;
         }
-        
+
         .nav-menu a.active {
             color: #d63823;
         }
-        
+
         .search-bar {
             display: flex;
             align-items: center;
@@ -70,7 +71,7 @@
             width: 300px;
             margin-right: 20px;
         }
-        
+
         .search-bar input {
             border: none;
             background: none;
@@ -78,19 +79,19 @@
             width: 100%;
             font-size: 14px;
         }
-        
+
         .header-right {
             display: flex;
             gap: 15px;
             align-items: center;
         }
-        
+
         .header-right a {
             text-decoration: none;
             color: #424242;
             font-size: 14px;
         }
-        
+
         .write-btn {
             background-color: #ff5757;
             color: white;
@@ -100,26 +101,26 @@
             font-size: 14px;
             font-weight: 500;
         }
-        
+
         /* 메인 컨테이너 */
         .main-container {
             max-width: 720px;
             margin: 0 auto;
             padding: 40px 20px;
         }
-        
+
         /* 제목 섹션 */
         .title-section {
             margin-bottom: 24px;
         }
-        
+
         .post-title {
             font-size: 32px;
             font-weight: 700;
             line-height: 1.4;
             margin-bottom: 16px;
         }
-        
+
         .author-info {
             display: flex;
             align-items: center;
@@ -127,36 +128,36 @@
             padding: 16px 0;
             border-bottom: 1px solid #eaedef;
         }
-        
+
         .author-left {
             display: flex;
             align-items: center;
             gap: 12px;
         }
-        
+
         .author-avatar {
             width: 48px;
             height: 48px;
             border-radius: 50%;
             background-color: #ff5757;
         }
-        
+
         .author-details {
             display: flex;
             flex-direction: column;
             gap: 4px;
         }
-        
+
         .author-name {
             font-weight: 700;
             font-size: 15px;
         }
-        
+
         .post-date {
             font-size: 13px;
             color: #757575;
         }
-        
+
         .follow-btn {
             background-color: #ff5757;
             color: white;
@@ -167,35 +168,35 @@
             font-weight: 500;
             cursor: pointer;
         }
-        
+
         /* 이미지 섹션 */
         .image-container {
             margin-bottom: 24px;
         }
-        
+
         .post-image {
             width: 100%;
             margin-bottom: 16px;
             border-radius: 8px;
             overflow: hidden;
         }
-        
+
         .post-image img {
             width: 100%;
             display: block;
         }
-        
+
         /* 텍스트 콘텐츠 */
         .text-content {
             font-size: 16px;
             line-height: 1.8;
             margin-bottom: 32px;
         }
-        
+
         .text-content p {
             margin-bottom: 20px;
         }
-        
+
         /* 액션 바 */
         .action-bar {
             display: flex;
@@ -206,12 +207,12 @@
             border-bottom: 1px solid #eaedef;
             margin: 40px 0;
         }
-        
+
         .action-left {
             display: flex;
             gap: 20px;
         }
-        
+
         .action-btn {
             display: flex;
             align-items: center;
@@ -222,15 +223,15 @@
             color: #424242;
             cursor: pointer;
         }
-        
+
         .action-btn:hover {
             color: #ff5757;
         }
-        
+
         .action-btn.liked {
             color: #ff5757;
         }
-        
+
         /* 태그 */
         .tags {
             display: flex;
@@ -238,7 +239,7 @@
             gap: 8px;
             margin-bottom: 40px;
         }
-        
+
         .tag {
             background-color: #f5f5f5;
             padding: 8px 16px;
@@ -247,45 +248,45 @@
             color: #424242;
             text-decoration: none;
         }
-        
+
         .tag:hover {
             background-color: #eaedef;
         }
-        
+
         /* 댓글 섹션 */
         .comment-section {
             margin-top: 40px;
         }
-        
+
         .comment-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
             margin-bottom: 20px;
         }
-        
+
         .comment-title {
             font-size: 18px;
             font-weight: 700;
         }
-        
+
         .comment-count {
             color: #ff5757;
             margin-left: 4px;
         }
-        
+
         .comment-sort {
             font-size: 14px;
             color: #757575;
         }
-        
+
         /* 댓글 입력 */
         .comment-input-container {
             display: flex;
             gap: 12px;
             margin-bottom: 24px;
         }
-        
+
         .comment-input-avatar {
             width: 36px;
             height: 36px;
@@ -293,11 +294,11 @@
             background-color: #eaedef;
             flex-shrink: 0;
         }
-        
+
         .comment-input-wrapper {
             flex: 1;
         }
-        
+
         .comment-input {
             width: 100%;
             padding: 12px;
@@ -307,16 +308,16 @@
             resize: none;
             outline: none;
         }
-        
+
         .comment-input:focus {
             border-color: #35c5f0;
         }
-        
+
         .comment-submit {
             margin-top: 8px;
             text-align: right;
         }
-        
+
         .comment-submit-btn {
             background-color: #ff5757;
             color: white;
@@ -327,19 +328,19 @@
             font-weight: 500;
             cursor: pointer;
         }
-        
+
         /* 댓글 리스트 */
         .comment-list {
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
-        
+
         .comment-item {
             display: flex;
             gap: 12px;
         }
-        
+
         .comment-avatar {
             width: 36px;
             height: 36px;
@@ -347,38 +348,38 @@
             background-color: #ff5757;
             flex-shrink: 0;
         }
-        
+
         .comment-content {
             flex: 1;
         }
-        
+
         .comment-author {
             font-weight: 700;
             font-size: 14px;
             margin-bottom: 4px;
         }
-        
+
         .comment-text {
             font-size: 14px;
             line-height: 1.6;
             margin-bottom: 8px;
         }
-        
+
         .comment-meta {
             display: flex;
             gap: 12px;
             font-size: 13px;
             color: #757575;
         }
-        
+
         .comment-action {
             cursor: pointer;
         }
-        
+
         .comment-action:hover {
             color: #ff5757;
         }
-        
+
         /* 사이드바 */
         .sidebar {
             position: fixed;
@@ -390,7 +391,7 @@
             align-items: center;
             gap: 20px;
         }
-        
+
         .sidebar-btn {
             width: 48px;
             height: 48px;
@@ -404,40 +405,40 @@
             cursor: pointer;
             transition: all 0.2s;
         }
-        
+
         .sidebar-btn:hover {
             border-color: #ff5757;
             color: #ff5757;
         }
-        
+
         .sidebar-btn.active {
             background-color: #ff5757;
             color: white;
             border-color: #ff5757;
         }
-        
+
         /* 반응형 */
         @media (max-width: 1200px) {
             .sidebar {
                 display: none;
             }
         }
-        
+
         @media (max-width: 768px) {
             .nav-menu {
                 display: none;
             }
-            
+
             .search-bar {
                 width: auto;
                 flex: 1;
             }
-            
+
             .post-title {
                 font-size: 24px;
             }
         }
-        
+
         /* Footer 스타일 */
         .footer {
             background-color: #f7f8fa;
@@ -445,7 +446,7 @@
             padding: 40px 0 30px;
             margin-top: 80px;
         }
-        
+
         .footer-container {
             max-width: 1256px;
             margin: 0 auto;
@@ -454,45 +455,45 @@
             grid-template-columns: 300px 1fr;
             gap: 60px;
         }
-        
+
         .footer-section h3 {
             font-size: 18px;
             font-weight: 700;
             color: #424242;
             margin-bottom: 16px;
         }
-        
+
         .footer-phone {
             font-size: 24px;
             font-weight: 700;
             color: #424242;
             margin-bottom: 12px;
         }
-        
+
         .footer-phone span {
             font-size: 14px;
             font-weight: 400;
             color: #757575;
             margin-left: 8px;
         }
-        
+
         .footer-section ul {
             list-style: none;
             margin-bottom: 20px;
         }
-        
+
         .footer-section li {
             font-size: 14px;
             color: #757575;
             margin-bottom: 4px;
         }
-        
+
         .footer-time {
             font-size: 14px;
             color: #424242;
             margin-bottom: 16px;
         }
-        
+
         .footer-btn {
             background-color: white;
             border: 1px solid #dadce0;
@@ -503,52 +504,52 @@
             cursor: pointer;
             font-weight: 500;
         }
-        
+
         .footer-btn:hover {
             background-color: #f5f5f5;
         }
-        
+
         .footer-links {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 40px;
         }
-        
+
         .footer-column {
             display: flex;
             flex-direction: column;
             gap: 16px;
         }
-        
+
         .footer-column a {
             text-decoration: none;
             color: #424242;
             font-size: 14px;
         }
-        
+
         .footer-column a:hover {
             text-decoration: underline;
         }
-        
+
         .footer-info {
             grid-column: 1 / -1;
             margin-top: 40px;
             padding-top: 40px;
             border-top: 1px solid #eaedef;
         }
-        
+
         .footer-info p {
             font-size: 12px;
             color: #757575;
             margin-bottom: 8px;
             line-height: 1.5;
         }
-        
+
         .footer-info a {
             color: #757575;
             text-decoration: underline;
         }
-        
+
         .footer-notice {
             margin-top: 20px;
             padding: 16px;
@@ -557,30 +558,30 @@
             font-size: 12px;
             line-height: 1.5;
         }
-        
+
         .footer-certificates {
             display: flex;
             gap: 12px;
             margin: 20px 0;
         }
-        
+
         .footer-certificates img {
             height: 32px;
         }
-        
+
         .footer-desc {
             margin-top: 20px;
             font-size: 10px;
             color: #828c94;
             line-height: 1.6;
         }
-        
+
         .footer-social {
             display: flex;
             gap: 12px;
             margin: 24px 0 16px;
         }
-        
+
         .footer-social a {
             width: 32px;
             height: 32px;
@@ -592,22 +593,22 @@
             text-decoration: none;
             font-size: 16px;
         }
-        
+
         .footer-social a:hover {
             background-color: #424242;
         }
-        
+
         .footer-copyright {
             font-size: 10px;
             color: #828c94;
         }
-        
+
         @media (max-width: 768px) {
             .footer-container {
                 grid-template-columns: 1fr;
                 gap: 40px;
             }
-            
+
             .footer-links {
                 grid-template-columns: 1fr;
                 gap: 24px;
@@ -615,6 +616,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- 헤더 -->
     <header class="header">
@@ -635,11 +637,11 @@
                 <a href="#">로그인</a>
                 <a href="#">회원가입</a>
                 <a href="#">고객센터</a>
-                <a href="#" class="write-btn">글쓰기 ▼</a>
+                <a href="#" class="write-btn">글쓰기 &nbsp;&nbsp;▼</a>
             </div>
         </div>
     </header>
-    
+
     <!-- 메인 컨텐츠 -->
     <main class="main-container">
         <!-- 제목 섹션 -->
@@ -656,47 +658,50 @@
                 <button class="follow-btn">팔로우</button>
             </div>
         </div>
-        
+
         <!-- 이미지 섹션 -->
         <div class="image-container">
             <div class="post-image">
-                <img src="https://www.lunchbasket.co.kr/data/item/999999906/0428_LUNCH_BASKET_MAIN0440.jpg" alt="거실 전체 뷰">
+                <img src="https://www.lunchbasket.co.kr/data/item/999999906/0428_LUNCH_BASKET_MAIN0440.jpg"
+                    alt="거실 전체 뷰">
             </div>
-            
+
             <div class="text-content">
-                <p>안녕하세요! 오늘은 제가 최근에 저희 아들에게 만들어준 도시락을 소개해드리려고 해요! 
-                얼마전 유치원으로부터 아들이 음식을 잘 먹지 않는다는 연락을 받았어요.</p>
+                <p>안녕하세요! 오늘은 제가 최근에 저희 아들에게 만들어준 도시락을 소개해드리려고 해요!
+                    얼마전 유치원으로부터 아들이 음식을 잘 먹지 않는다는 연락을 받았어요.</p>
             </div>
-            
+
             <div class="post-image">
-                <img src="https://형제도시락.com/wp-content/uploads/2023/03/%EC%86%8C%EB%B6%88%EA%B3%A0%EA%B8%B0-%EA%B3%A0%EA%B8%89-%EB%8F%84%EC%8B%9C%EB%9D%BD.jpg" alt="소파 공간">
+                <img src="https://형제도시락.com/wp-content/uploads/2023/03/%EC%86%8C%EB%B6%88%EA%B3%A0%EA%B8%B0-%EA%B3%A0%EA%B8%89-%EB%8F%84%EC%8B%9C%EB%9D%BD.jpg"
+                    alt="소파 공간">
             </div>
-            
+
             <div class="text-content">
                 <p>저희 집에서는 잘 먹는데 유치원에서는 왜 안 먹는걸까 무슨 일 있는 건 아닌지 걱정을 많이 했어요.
                     근데 이유가.. 다른 친구들 도시락이 너무 귀엽고 예쁘다는 것!!!
                 </p>
-                
+
                 <p>제가 너무 바빠서 아이 점심 도시락에 신경을 많이 못 써준 것 같아 미안하더라구요..
                     맘카페에서 여기저기 도시락 아이디어 물어보느라 고생 좀 했네요ㅠㅠ
                 </p>
             </div>
-            
+
             <div class="post-image">
-                <img src="https://godomall.speedycdn.net/719c8e7650aa0bb615fc9f4a5ef0de94/goods/1000000131/image/main/1000000131_main_02.png" alt="조명 디테일">
+                <img src="https://godomall.speedycdn.net/719c8e7650aa0bb615fc9f4a5ef0de94/goods/1000000131/image/main/1000000131_main_02.png"
+                    alt="조명 디테일">
             </div>
-            
+
             <div class="text-content">
                 <p>그래서 제가 찾은 방법은 마트에 파는 도시락처럼 구성해주는 것입니다!
-                저희 아들은 마트 구경을 정말 좋아하는데요. 갈 때마다 꼭 들르는 곳이 도시락 코너에요.</p>
-                
+                    저희 아들은 마트 구경을 정말 좋아하는데요. 갈 때마다 꼭 들르는 곳이 도시락 코너에요.</p>
+
                 <p>아무래도 정렬되어 있는 도시락이 알록달록하고 구성도 다양해서 이목을 끌긴 하더라구요.
                     너무 바빠서 도시락을 사서 먹은 적이 있는데, 그 때 아주 잘 먹는 걸 보고 유레카! 했답니다ㅎㅎ.
                     다른 분들은 아이들 도시락 어떻게 싸주시나요?? 아이디어 공유 좀 해주세요~~~
                 </p>
             </div>
         </div>
-        
+
         <!-- 액션 바 -->
         <div class="action-bar">
             <div class="action-left">
@@ -718,7 +723,7 @@
                 <span>공유하기</span>
             </button>
         </div>
-        
+
         <!-- 태그 -->
         <div class="tags">
             <a href="#" class="tag">#도시락</a>
@@ -727,13 +732,13 @@
             <a href="#" class="tag">#편의점도시락</a>
             <a href="#" class="tag">#알록달록</a>
         </div>
-        
+
         <!-- 댓글 섹션 -->
         <div class="comment-section">
             <div class="comment-header">
                 <h2 class="comment-title">댓글 <span class="comment-count">42</span></h2>
             </div>
-            
+
             <!-- 댓글 입력 -->
             <div class="comment-input-container">
                 <div class="comment-input-avatar"></div>
@@ -744,14 +749,15 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- 댓글 리스트 -->
             <div class="comment-list">
                 <div class="comment-item">
                     <div class="comment-avatar"></div>
                     <div class="comment-content">
                         <div class="comment-author">훈이맘</div>
-                        <div class="comment-text">우와 매일 이렇게 도시락을 싸주신다니..정말 따뜻한 마음이 느껴지네요! 저도 딸램 도시락 어케 싸야하나 고민 많았는데 참고하겠습니다 😊</div>
+                        <div class="comment-text">우와 매일 이렇게 도시락을 싸주신다니..정말 따뜻한 마음이 느껴지네요! 저도 딸램 도시락 어케 싸야하나 고민 많았는데
+                            참고하겠습니다 😊</div>
                         <div class="comment-meta">
                             <span>2시간 전</span>
                             <span class="comment-action">좋아요</span>
@@ -759,7 +765,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="comment-item">
                     <div class="comment-avatar"></div>
                     <div class="comment-content">
@@ -772,7 +778,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="comment-item">
                     <div class="comment-avatar"></div>
                     <div class="comment-content">
@@ -788,14 +794,14 @@
             </div>
         </div>
     </main>
-    
+
     <!-- 사이드바 -->
     <aside class="sidebar">
         <button class="sidebar-btn">❤️</button>
         <button class="sidebar-btn">🔖</button>
     </aside>
-    
-   <!-- Footer -->
+
+    <!-- Footer -->
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-section">
@@ -809,7 +815,7 @@
                 <p class="footer-time">카톡 상담(평일 09:00~18:00)</p>
                 <button class="footer-btn">이메일 문의</button>
             </div>
-            
+
             <div class="footer-links">
                 <div class="footer-column">
                     <a href="#">회사소개</a>
@@ -819,7 +825,7 @@
                     <a href="#">공지사항</a>
                     <a href="#">건의보호센터</a>
                 </div>
-                
+
                 <div class="footer-column">
                     <a href="#">입점신청</a>
                     <a href="#">제휴/광고 문의</a>
@@ -832,4 +838,5 @@
         </div>
     </footer>
 </body>
+
 </html>

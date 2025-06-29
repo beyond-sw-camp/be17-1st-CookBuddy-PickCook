@@ -1,58 +1,65 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>냉장고 관리 | 오늘의집</title>
-    <link rel="stylesheet" href="/css/style_optimized.css"> 
+    <title>PickCook | 홈</title>
+    <link rel="stylesheet" href="/css/variables.css">
+    <link rel="stylesheet" href="/css/style_optimized.css">
     <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://kit.fontawesome.com/62e693f9e1.js" crossorigin="anonymous"></script>
 </head>
 <script>
-        // 배너 슬라이더 기능
-        document.addEventListener('DOMContentLoaded', function() {
-            const slides = document.querySelectorAll('.banner-slide');
-            const dots = document.querySelectorAll('.dot');
-            const prevBtn = document.querySelector('.banner-prev');
-            const nextBtn = document.querySelector('.banner-next');
-            let currentSlide = 0;
-            
-            // 슬라이드 변경 함수
-            function changeSlide(index) {
-                // 현재 슬라이드 비활성화
-                slides[currentSlide].classList.remove('active');
-                dots[currentSlide].classList.remove('active');
-                
-                // 새 슬라이드 활성화
-                currentSlide = index;
-                slides[currentSlide].classList.add('active');
-                dots[currentSlide].classList.add('active');
-            }
-            
-            // 다음 슬라이드
-            function nextSlide() {
-                const nextIndex = (currentSlide + 1) % slides.length;
-                changeSlide(nextIndex);
-            }
-            
-            // 이전 슬라이드
-            function prevSlide() {
-                const prevIndex = (currentSlide - 1 + slides.length) % slides.length;
-                changeSlide(prevIndex);
-            }
-            
-            // 버튼 이벤트 리스너
-            nextBtn.addEventListener('click', nextSlide);
-            prevBtn.addEventListener('click', prevSlide);
-            
-            // 닷 클릭 이벤트
-            dots.forEach((dot, index) => {
-                dot.addEventListener('click', () => changeSlide(index));
-            });
-            
-            // 자동 슬라이드 (5초마다)
-            setInterval(nextSlide, 5000);
+    // 배너 슬라이더 기능
+    document.addEventListener('DOMContentLoaded', function () {
+        const slides = document.querySelectorAll('.banner-slide');
+        const dots = document.querySelectorAll('.dot');
+        const prevBtn = document.querySelector('.banner-prev');
+        const nextBtn = document.querySelector('.banner-next');
+        let currentSlide = 0;
+
+        // 슬라이드 변경 함수
+        function changeSlide(index) {
+            // 현재 슬라이드 비활성화
+            slides[currentSlide].classList.remove('active');
+            dots[currentSlide].classList.remove('active');
+
+            // 새 슬라이드 활성화
+            currentSlide = index;
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+
+        // 다음 슬라이드
+        function nextSlide() {
+            const nextIndex = (currentSlide + 1) % slides.length;
+            changeSlide(nextIndex);
+        }
+
+        // 이전 슬라이드
+        function prevSlide() {
+            const prevIndex = (currentSlide - 1 + slides.length) % slides.length;
+            changeSlide(prevIndex);
+        }
+
+        // 버튼 이벤트 리스너
+        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', prevSlide);
+
+        // 닷 클릭 이벤트
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => changeSlide(index));
         });
-    </script>
+
+        // 자동 슬라이드 (5초마다)
+        setInterval(nextSlide, 5000);
+    });
+</script>
+
 <body>
     <!-- 헤더 -->
     <header class="header">
@@ -62,7 +69,7 @@
                 <a href="/index.html" class="active">홈</a>
                 <a href="/refrigerator.html">냉장고</a>
                 <a href="/recipe.html">레시피</a>
-                <a href="#">쇼핑</a>
+                <a href="/shopping.html">쇼핑</a>
                 <a href="#">커뮤니티</a>
             </nav>
             <div class="search-bar">
@@ -71,9 +78,9 @@
             </div>
             <div class="header-right">
                 <a href="/login.html">로그인</a>
-                <a href="/signup.html">회원가입</a>
+                <a href="/signup_type_select.html">회원가입</a>
                 <a href="#">고객센터</a>
-                <a href="#" class="write-btn">글쓰기 ▼</a>
+                <a href="#" class="write-btn">글쓰기 &nbsp;&nbsp;▼</a>
             </div>
         </div>
     </header>
@@ -82,85 +89,30 @@
     <div class="banner-section">
         <div class="banner-container">
             <div class="banner-slider">
-                <div class="banner-slide active" style="background: linear-gradient(135deg, #fff5f0 0%, #ffe0d0 100%);">
-                    <div class="banner-content">
-                        <div class="banner-text">
-                            <span class="banner-brand">해피린✕보들매트</span>
-                            <h2 class="banner-title">퍼즐매트 공동구매 2차</h2>
-                            <p class="banner-desc">5% 할인쿠폰 + 사은품</p>
-                        </div>
-                        <div class="banner-image">
-                            <img src="https://via.placeholder.com/400x300/ffffff/ff6b6b?text=퍼즐매트" alt="퍼즐매트">
-                            <span class="banner-badge">베피린<br>PICK</span>
-                        </div>
-                    </div>
+                <div class="banner-slide active" style="background-image: url('/assets/banners/banner1.png');">
                     <span class="slide-number">1 / 5</span>
                 </div>
-                
-                <div class="banner-slide" style="background: linear-gradient(135deg, #f0f9ff 0%, #d0e7ff 100%);">
-                    <div class="banner-content">
-                        <div class="banner-text">
-                            <span class="banner-brand">신선식품 특가</span>
-                            <h2 class="banner-title">유기농 채소 대전</h2>
-                            <p class="banner-desc">최대 40% 할인 + 무료배송</p>
-                        </div>
-                        <div class="banner-image">
-                            <img src="https://via.placeholder.com/400x300/ffffff/4ecdc4?text=유기농채소" alt="유기농채소">
-                            <span class="banner-badge">오늘만<br>특가</span>
-                        </div>
-                    </div>
+
+                <div class="banner-slide" style="background-image: url('/assets/banners/banner2.png');">
                     <span class="slide-number">2 / 5</span>
                 </div>
-                
-                <div class="banner-slide" style="background: linear-gradient(135deg, #f5f0ff 0%, #e0d0ff 100%);">
-                    <div class="banner-content">
-                        <div class="banner-text">
-                            <span class="banner-brand">주방용품 기획전</span>
-                            <h2 class="banner-title">냉장고 정리용품 모음</h2>
-                            <p class="banner-desc">깔끔한 주방 만들기 프로젝트</p>
-                        </div>
-                        <div class="banner-image">
-                            <img src="https://via.placeholder.com/400x300/ffffff/9b59b6?text=정리용품" alt="정리용품">
-                            <span class="banner-badge">베스트<br>상품</span>
-                        </div>
-                    </div>
+
+                <div class="banner-slide" style="background-image: url('/assets/banners/banner3.png');">
                     <span class="slide-number">3 / 5</span>
                 </div>
-                
-                <div class="banner-slide" style="background: linear-gradient(135deg, #fff0f5 0%, #ffd0e0 100%);">
-                    <div class="banner-content">
-                        <div class="banner-text">
-                            <span class="banner-brand">프리미엄 밀키트</span>
-                            <h2 class="banner-title">미슐랭 셰프 레시피</h2>
-                            <p class="banner-desc">집에서 즐기는 파인다이닝</p>
-                        </div>
-                        <div class="banner-image">
-                            <img src="https://via.placeholder.com/400x300/ffffff/e91e63?text=밀키트" alt="밀키트">
-                            <span class="banner-badge">신상품<br>출시</span>
-                        </div>
-                    </div>
+
+                <div class="banner-slide" style="background-image: url('/assets/banners/banner4.png');">
                     <span class="slide-number">4 / 5</span>
                 </div>
-                
-                <div class="banner-slide" style="background: linear-gradient(135deg, #f0fff0 0%, #d0ffd0 100%);">
-                    <div class="banner-content">
-                        <div class="banner-text">
-                            <span class="banner-brand">건강한 다이어트</span>
-                            <h2 class="banner-title">샐러드 정기구독</h2>
-                            <p class="banner-desc">첫 구독 50% 할인 이벤트</p>
-                        </div>
-                        <div class="banner-image">
-                            <img src="https://via.placeholder.com/400x300/ffffff/8bc34a?text=샐러드" alt="샐러드">
-                            <span class="banner-badge">첫구독<br>혜택</span>
-                        </div>
-                    </div>
+
+                <div class="banner-slide" style="background-image: url('/assets/banners/banner5.png');">
                     <span class="slide-number">5 / 5</span>
                 </div>
             </div>
-            
-            <button class="banner-nav banner-prev">‹</button>
-            <button class="banner-nav banner-next">›</button>
-            
+
+            <button class="banner-nav banner-prev"><img src="/assets/icons/ic-banner-left.png" alt="왼쪽"></button>
+            <button class="banner-nav banner-next"><img src="/assets/icons/ic-banner-right.png" alt="오른쪽"></button>
+
             <div class="banner-dots">
                 <span class="dot active"></span>
                 <span class="dot"></span>
@@ -170,168 +122,200 @@
             </div>
         </div>
     </div>
-    
-    
-   
-    
+
+
+
+
     <!-- 레시피 추천 섹션 -->
     <div class="content-section">
         <div class="section-header">
-            <h2 class="section-title">🍳 보유 재료로 만들 수 있는 레시피</h2>
+            <h2 class="section-title">🍳 냉장고 재료로 만들 수 있는 레시피</h2>
             <a href="#" class="section-more">더보기 ></a>
         </div>
         <div class="content-grid">
-            <div class="content-card">
-                <div class="card-image">
-                    <img src="https://via.placeholder.com/300x300/ffebcd/8b4513?text=프렌치토스트" alt="프렌치토스트">
-                    <span class="card-badge">식빵 활용</span>
+            <div class="recipe-card content-card">
+                <div class="recipe-rep-image card-image">
+                    <img src="https://gomean.co.kr/wp-content/uploads/2023/06/gm-frenchtoasttiny.jpg" alt="프렌치토스트">
+                    <span class="myref-ingredient card-badge">식빵 활용</span>
+                    <img class="recipe-scrap-icon" src="/assets/icons/ic-empty-scrap.png" alt="스크랩">
                 </div>
-                <div class="card-content">
-                    <h3 class="card-title">간단하고 맛있는 프렌치토스트 만들기</h3>
-                    <div class="card-author">
-                        <div class="author-avatar"></div>
-                        <span class="author-name">요리하는집사</span>
+                <div class="recipe-card-content card-content">
+                    <div class="recipe-title-container">
+                        <h3 class="recipe-title card-title">간단하고 맛있는 프렌치토스트 만들기</h3>
+                        <span class="recipe-likes-count">255<img src="/assets/icons/ic-empty-like.png" alt="좋아요"></span>
                     </div>
-                    <div class="card-stats">
-                        <span>❤️ 1.2k</span>
-                        <span>💬 89</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="content-card">
-                <div class="card-image">
-                    <img src="https://via.placeholder.com/300x300/e8f5e9/2e7d32?text=샐러드" alt="샐러드">
-                    <span class="card-badge">상추 활용</span>
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">신선한 야채 샐러드 레시피</h3>
-                    <div class="card-author">
-                        <div class="author-avatar"></div>
-                        <span class="author-name">헬시쿡</span>
-                    </div>
-                    <div class="card-stats">
-                        <span>❤️ 892</span>
-                        <span>💬 67</span>
+                    <div class="recipe-card-stats card-stats">
+                        <span class="recipe-stats-items"><img src="/assets/icons/ic-time.png" alt="조리시간">20분</span>
+                        <span class="recipe-stats-items"><img src="/assets/icons/ic-level.png" alt="난이도">보통</span>
+                        <span class="recipe-stats-items"><img src="/assets/icons/ic-qnt.png" alt="인분">4인분</span>
                     </div>
                 </div>
             </div>
-            
-            <div class="content-card">
-                <div class="card-image">
-                    <img src="https://via.placeholder.com/300x300/fff3e0/e65100?text=오믈렛" alt="오믈렛">
-                    <span class="card-badge">계란 활용</span>
+
+            <div class="recipe-card content-card">
+                <div class="recipe-rep-image card-image">
+                    <img src="https://mblogthumb-phinf.pstatic.net/MjAxODA1MzBfMTgg/MDAxNTI3NjQ2ODE2MTQ3.gSKj2qW0kCtd1VgMHQo25RagQmU_vIJcsf2vj_3_3VYg.NYktdRYjmwRWBBth5gfUKwg_hw-DupX7wfRRD-jMD3cg.JPEG.ottogitoday1/%EC%B9%98%EC%A6%88%EC%98%A4%EB%AF%88%EB%A0%9B_%EC%B9%98%EC%A6%88%EB%A0%88%EC%8B%9C%ED%94%BC_%EC%B9%98%EC%A6%88%EC%9A%94%EB%A6%AC_%EC%98%A4%EB%AF%88%EB%A0%9B_%EC%98%A4%EB%AF%88%EB%A0%9B%EB%A7%8C%EB%93%9C%EB%8A%94%EB%B2%95_2.jpg?type=w800"
+                        alt="오믈렛">
+                    <span class="myref-ingredient card-badge">계란 활용</span>
+                    <img class="recipe-scrap-icon" src="/assets/icons/ic-empty-scrap.png" alt="스크랩">
                 </div>
-                <div class="card-content">
-                    <h3 class="card-title">치즈 듬뿍 오믈렛 만들기</h3>
-                    <div class="card-author">
-                        <div class="author-avatar"></div>
-                        <span class="author-name">브런치카페</span>
+                <div class="recipe-card-content card-content">
+                    <div class="recipe-title-container">
+                        <h3 class="recipe-title card-title">치즈 듬뿍 오믈렛 만들기</h3>
+                        <span class="recipe-likes-count">255<img src="/assets/icons/ic-empty-like.png" alt="좋아요"></span>
                     </div>
-                    <div class="card-stats">
-                        <span>❤️ 2.1k</span>
-                        <span>💬 156</span>
+                    <div class="recipe-card-stats card-stats">
+                        <span class="recipe-stats-items"><img src="/assets/icons/ic-time.png" alt="조리시간">20분</span>
+                        <span class="recipe-stats-items"><img src="/assets/icons/ic-level.png" alt="난이도">보통</span>
+                        <span class="recipe-stats-items"><img src="/assets/icons/ic-qnt.png" alt="인분">4인분</span>
                     </div>
                 </div>
             </div>
-            
-            <div class="content-card">
-                <div class="card-image">
-                    <img src="https://via.placeholder.com/300x300/fce4ec/c2185b?text=토마토파스타" alt="토마토파스타">
-                    <span class="card-badge">토마토 활용</span>
+
+            <div class="recipe-card content-card">
+                <div class="recipe-rep-image card-image">
+                    <img src="https://cdn.imweb.me/thumbnail/20240430/b9386c414db63.jpg" alt="샐러드">
+                    <span class="myref-ingredient card-badge">상추 활용</span>
+                    <img class="recipe-scrap-icon" src="/assets/icons/ic-empty-scrap.png" alt="스크랩">
                 </div>
-                <div class="card-content">
-                    <h3 class="card-title">간단 토마토 파스타 레시피</h3>
-                    <div class="card-author">
-                        <div class="author-avatar"></div>
-                        <span class="author-name">이탈리안쿡</span>
+                <div class="recipe-card-content card-content">
+                    <div class="recipe-title-container">
+                        <h3 class="recipe-title card-title">신선한 야채 샐러드 레시피</h3>
+                        <span class="recipe-likes-count">255<img src="/assets/icons/ic-empty-like.png" alt="좋아요"></span>
                     </div>
-                    <div class="card-stats">
-                        <span>❤️ 3.5k</span>
-                        <span>💬 298</span>
+                    <div class="recipe-card-stats card-stats">
+                        <span class="recipe-stats-items"><img src="/assets/icons/ic-time.png" alt="조리시간">20분</span>
+                        <span class="recipe-stats-items"><img src="/assets/icons/ic-level.png" alt="난이도">보통</span>
+                        <span class="recipe-stats-items"><img src="/assets/icons/ic-qnt.png" alt="인분">4인분</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recipe-card content-card">
+                <div class="recipe-rep-image card-image">
+                    <img src="https://cdn.oasis.co.kr:48581/product/73527/thumb/thumb_735271f6af6dc-63fa-4a82-b0dd-f5d295ea28b1.jpg"
+                        alt="토마토 파스타">
+                    <span class="myref-ingredient card-badge">토마토 활용</span>
+                    <img class="recipe-scrap-icon" src="/assets/icons/ic-empty-scrap.png" alt="스크랩">
+                </div>
+                <div class="recipe-card-content card-content">
+                    <div class="recipe-title-container">
+                        <h3 class="recipe-title card-title">간단 토마토 파스타 레시피</h3>
+                        <span class="recipe-likes-count">255<img src="/assets/icons/ic-empty-like.png" alt="좋아요"></span>
+                    </div>
+                    <div class="recipe-card-stats card-stats">
+                        <span class="recipe-stats-items"><img src="/assets/icons/ic-time.png" alt="조리시간">20분</span>
+                        <span class="recipe-stats-items"><img src="/assets/icons/ic-level.png" alt="난이도">보통</span>
+                        <span class="recipe-stats-items"><img src="/assets/icons/ic-qnt.png" alt="인분">4인분</span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <!-- 커뮤니티 추천 섹션 -->
     <div class="content-section">
         <div class="section-header">
-            <h2 class="section-title">👥 냉장고 정리 노하우 커뮤니티</h2>
+            <h2 class="section-title">👥 실시간 인기 커뮤니티</h2>
             <a href="#" class="section-more">더보기 ></a>
         </div>
         <div class="content-grid">
-            <div class="content-card">
+            <div class="community-card content-card">
                 <div class="card-image">
-                    <img src="https://via.placeholder.com/300x300/e3f2fd/1976d2?text=냉장고정리" alt="냉장고정리">
+                    <img src="https://semie.cooking/image/contents/xv/ey/eiskaiit/143562653ixqx.jpg" alt="냉장고정리">
+                    <span class="community-view-count card-badge"><img src="/assets/icons/ic-view.png"
+                            alt="조회수">736</span>
                 </div>
                 <div class="card-content">
                     <h3 class="card-title">냉장고 정리 수납 꿀팁 대방출!</h3>
-                    <div class="card-author">
-                        <div class="author-avatar"></div>
-                        <span class="author-name">정리의달인</span>
-                    </div>
-                    <div class="card-stats">
-                        <span>❤️ 4.2k</span>
-                        <span>💬 521</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="content-card">
-                <div class="card-image">
-                    <img src="https://via.placeholder.com/300x300/f3e5f5/7b1fa2?text=식재료보관" alt="식재료보관">
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">식재료별 보관법 총정리</h3>
-                    <div class="card-author">
-                        <div class="author-avatar"></div>
-                        <span class="author-name">주부9단</span>
-                    </div>
-                    <div class="card-stats">
-                        <span>❤️ 3.8k</span>
-                        <span>💬 412</span>
+                    <div class="community-card-content">
+                        <div class="card-author">
+                            <img class="author-avatar"
+                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQezhwWTAIYNDsnAu2JS94OP7gimu8-Apy87g&s"
+                                alt="프로필 사진"></img>
+                            <span class="author-name">정리의달인</span>
+                        </div>
+                        <div class="community-stats card-stats">
+                            <span><img src="/assets/icons/ic-empty-like.png" alt="좋아요"> 422</span>
+                            <span><img src="/assets/icons/ic-gray-empty-scrap.png" alt="스크랩"> 521</span>
+                        </div>
                     </div>
                 </div>
             </div>
-            
-            <div class="content-card">
+
+            <div class="community-card content-card">
                 <div class="card-image">
-                    <img src="https://via.placeholder.com/300x300/e8eaf6/5e35b1?text=냉동보관" alt="냉동보관">
+                    <img src="https://sahubconn001.blob.core.windows.net/ct-sahubconn001/img/newshop/goods/003600/003600_1.jpg"
+                        alt="쿠키">
+                    <span class="community-view-count card-badge"><img src="/assets/icons/ic-view.png"
+                            alt="조회수">736</span>
                 </div>
                 <div class="card-content">
-                    <h3 class="card-title">냉동실 200% 활용하기</h3>
-                    <div class="card-author">
-                        <div class="author-avatar"></div>
-                        <span class="author-name">프리징마스터</span>
-                    </div>
-                    <div class="card-stats">
-                        <span>❤️ 2.9k</span>
-                        <span>💬 334</span>
+                    <h3 class="card-title">제가 오늘 쿠키를 만들어봣는데요 진짜 너무 맛있어서 공유를 해드릴까 합니다. 이거 보시면 얼른</h3>
+                    <div class="community-card-content">
+                        <div class="card-author">
+                            <img class="author-avatar"
+                                src="https://dthezntil550i.cloudfront.net/ps/latest/ps2201272314365330022817814/1280_960/56cf6ec5-7084-48e1-a543-79b1d5908eab.png"
+                                alt="프로필 사진"></img>
+                            <span class="author-name">쿠쿸닼슼</span>
+                        </div>
+                        <div class="community-stats card-stats">
+                            <span><img src="/assets/icons/ic-empty-like.png" alt="좋아요"> 422</span>
+                            <span><img src="/assets/icons/ic-gray-empty-scrap.png" alt="스크랩"> 521</span>
+                        </div>
                     </div>
                 </div>
             </div>
-            
-            <div class="content-card">
+
+            <div class="community-card content-card">
                 <div class="card-image">
-                    <img src="https://via.placeholder.com/300x300/ede7f6/673ab7?text=식비절약" alt="식비절약">
+                    <img src="https://blog.lgchem.com/wp-content/uploads/2020/03/200325_remen_recipe_02_1.jpg"
+                        alt="레시피">
+                    <span class="community-view-count card-badge"><img src="/assets/icons/ic-view.png"
+                            alt="조회수">736</span>
                 </div>
                 <div class="card-content">
-                    <h3 class="card-title">냉장고 관리로 식비 절약하기</h3>
-                    <div class="card-author">
-                        <div class="author-avatar"></div>
-                        <span class="author-name">절약왕</span>
+                    <h3 class="card-title">도와주세요.. 레시피에서 적당히라고 적혀있는데 대체 적당히가 뭐죠..?</h3>
+                    <div class="community-card-content">
+                        <div class="card-author">
+                            <img class="author-avatar"
+                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAlaTCW_H-l1mSyOngrADrGNhk2nTIl-iDew&s"
+                                alt="프로필 사진"></img>
+                            <span class="author-name">뇸뇸</span>
+                        </div>
+                        <div class="community-stats card-stats">
+                            <span><img src="/assets/icons/ic-empty-like.png" alt="좋아요"> 422</span>
+                            <span><img src="/assets/icons/ic-gray-empty-scrap.png" alt="스크랩"> 521</span>
+                        </div>
                     </div>
-                    <div class="card-stats">
-                        <span>❤️ 5.6k</span>
-                        <span>💬 678</span>
+                </div>
+            </div>
+
+            <div class="community-card content-card">
+                <div class="card-image">
+                    <img src="https://wimg.heraldcorp.com/content/default/2024/05/30/20240530050694_0.jpg" alt="배달음식">
+                    <span class="community-view-count card-badge"><img src="/assets/icons/ic-view.png"
+                            alt="조회수">736</span>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">내가 한 거랑 뭐가 다르길래 이렇게 맛있는지ㅠ</h3>
+                    <div class="community-card-content">
+                        <div class="card-author">
+                            <img class="author-avatar"
+                                src="https://mblogthumb-phinf.pstatic.net/MjAyMDExMDFfMTgy/MDAxNjA0MjI4ODc1NDMw.Ex906Mv9nnPEZGCh4SREknadZvzMO8LyDzGOHMKPdwAg.ZAmE6pU5lhEdeOUsPdxg8-gOuZrq_ipJ5VhqaViubI4g.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%95%98%EB%8A%98%EC%83%89.jpg?type=w800"
+                                alt="프로필 사진"></img>
+                            <span class="author-name">친절한 이웃</span>
+                        </div>
+                        <div class="community-stats card-stats">
+                            <span><img src="/assets/icons/ic-empty-like.png" alt="좋아요"> 422</span>
+                            <span><img src="/assets/icons/ic-gray-empty-scrap.png" alt="스크랩"> 521</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <!-- 식재료 판매 추천 섹션 1 -->
     <div class="content-section">
         <div class="section-header">
@@ -339,80 +323,94 @@
             <a href="#" class="section-more">더보기 ></a>
         </div>
         <div class="content-grid">
-            <div class="content-card">
+            <div class="ingredients-card content-card">
                 <div class="card-image">
-                    <img src="https://via.placeholder.com/300x300/fff8e1/ffc107?text=유기농채소" alt="유기농채소">
+                    <img src="https://semie.cooking/image/contents/wn/cv/solcqifp/149437687iajp.jpg" alt="유기농채소">
                 </div>
                 <div class="card-content">
-                    <h3 class="card-title">[오늘특가] 유기농 채소 모음전</h3>
+                    <div class="ingredients-title-container">
+                        <h3 class="card-title">[오늘특가] 유기농 채소 모음전</h3>
+                        <img src="/assets/icons/ic-empty-shopping-cart.png" alt="장바구니">
+                    </div>
                     <div class="card-price">
                         <span class="card-discount">30%</span>
                         <span>15,900원</span>
+                        <div class="card-original-price">22,900원</div>
                     </div>
-                    <div class="card-original-price">22,900원</div>
-                    <div class="card-stats">
-                        <span>⭐ 4.8</span>
-                        <span>리뷰 1,234</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="content-card">
-                <div class="card-image">
-                    <img src="https://via.placeholder.com/300x300/ffebee/f44336?text=한우세트" alt="한우세트">
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">프리미엄 한우 정육 세트</h3>
-                    <div class="card-price">
-                        <span class="card-discount">20%</span>
-                        <span>79,900원</span>
-                    </div>
-                    <div class="card-original-price">99,900원</div>
-                    <div class="card-stats">
-                        <span>⭐ 4.9</span>
-                        <span>리뷰 892</span>
+                    <div class="ingredients-stats card-stats">
+                        <span><img src="/assets/icons/ic-stars.png" alt="평점">4.8</span>
+                        <span><img src="/assets/icons/ic-review.png" alt="리뷰">1,234</span>
                     </div>
                 </div>
             </div>
-            
-            <div class="content-card">
+
+            <div class="ingredients-card content-card">
                 <div class="card-image">
-                    <img src="https://via.placeholder.com/300x300/e1f5fe/00acc1?text=해산물세트" alt="해산물세트">
+                    <img src="https://hanwooeats.com/web/product/big/202309/ada3197cfe28224be20528f73aca6bb9.jpg"
+                        alt="한우">
                 </div>
                 <div class="card-content">
-                    <h3 class="card-title">산지직송 해산물 모듬</h3>
-                    <div class="card-price">
-                        <span class="card-discount">35%</span>
-                        <span>45,900원</span>
+                    <div class="ingredients-title-container">
+                        <h3 class="card-title">프리미엄 한우 정육 세트</h3>
+                        <img src="/assets/icons/ic-empty-shopping-cart.png" alt="장바구니">
                     </div>
-                    <div class="card-original-price">69,900원</div>
-                    <div class="card-stats">
-                        <span>⭐ 4.7</span>
-                        <span>리뷰 567</span>
+                    <div class="card-price">
+                        <span class="card-discount">30%</span>
+                        <span>15,900원</span>
+                        <div class="card-original-price">22,900원</div>
+                    </div>
+                    <div class="ingredients-stats card-stats">
+                        <span><img src="/assets/icons/ic-stars.png" alt="평점">4.8</span>
+                        <span><img src="/assets/icons/ic-review.png" alt="리뷰">1,234</span>
                     </div>
                 </div>
             </div>
-            
-            <div class="content-card">
+
+            <div class="ingredients-card content-card">
                 <div class="card-image">
-                    <img src="https://via.placeholder.com/300x300/f1f8e9/689f38?text=과일세트" alt="과일세트">
+                    <img src="https://img.siksinhot.com/place/1631603394086170.jpg?c=Y" alt="해산물">
                 </div>
                 <div class="card-content">
-                    <h3 class="card-title">제철 과일 선물세트</h3>
-                    <div class="card-price">
-                        <span class="card-discount">25%</span>
-                        <span>29,900원</span>
+                    <div class="ingredients-title-container">
+                        <h3 class="card-title">산지직송 해산물 모듬</h3>
+                        <img src="/assets/icons/ic-empty-shopping-cart.png" alt="장바구니">
                     </div>
-                    <div class="card-original-price">39,900원</div>
-                    <div class="card-stats">
-                        <span>⭐ 4.6</span>
-                        <span>리뷰 2,345</span>
+                    <div class="card-price">
+                        <span class="card-discount">30%</span>
+                        <span>15,900원</span>
+                        <div class="card-original-price">22,900원</div>
+                    </div>
+                    <div class="ingredients-stats card-stats">
+                        <span><img src="/assets/icons/ic-stars.png" alt="평점">4.8</span>
+                        <span><img src="/assets/icons/ic-review.png" alt="리뷰">1,234</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ingredients-card content-card">
+                <div class="card-image">
+                    <img src="https://ecimg.cafe24img.com/pg1293b82084384039/allfresh777/web/product/medium/20250624/73fd1337dc3cb390836738cd565a4ee1.png"
+                        alt="과일">
+                </div>
+                <div class="card-content">
+                    <div class="ingredients-title-container">
+                        <h3 class="card-title">제철 과일 선물세트</h3>
+                        <img src="/assets/icons/ic-empty-shopping-cart.png" alt="장바구니">
+                    </div>
+                    <div class="card-price">
+                        <span class="card-discount">30%</span>
+                        <span>15,900원</span>
+                        <div class="card-original-price">22,900원</div>
+                    </div>
+                    <div class="ingredients-stats card-stats">
+                        <span><img src="/assets/icons/ic-stars.png" alt="평점">4.8</span>
+                        <span><img src="/assets/icons/ic-review.png" alt="리뷰">1,234</span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <!-- 식재료 판매 추천 섹션 2 -->
     <div class="content-section">
         <div class="section-header">
@@ -420,115 +418,121 @@
             <a href="#" class="section-more">더보기 ></a>
         </div>
         <div class="content-grid">
-            <div class="content-card">
+            <div class="ingredients-card content-card">
                 <div class="card-image">
-                    <img src="https://via.placeholder.com/300x300/fce4ec/e91e63?text=밀키트" alt="밀키트">
+                    <img src="https://www.foodbank.co.kr/news/photo/202201/62407_19908_1226.jpg" alt="부대찌개">
                 </div>
                 <div class="card-content">
-                    <h3 class="card-title">2인분 스테이크 밀키트</h3>
-                    <div class="card-price">
-                        <span class="card-discount">40%</span>
-                        <span>17,900원</span>
+                    <div class="ingredients-title-container">
+                        <h3 class="card-title">2인분 부대찌개 밀키트</h3>
+                        <img src="/assets/icons/ic-empty-shopping-cart.png" alt="장바구니">
                     </div>
-                    <div class="card-original-price">29,900원</div>
-                    <div class="card-stats">
-                        <span>⭐ 4.8</span>
-                        <span>리뷰 3,456</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="content-card">
-                <div class="card-image">
-                    <img src="https://via.placeholder.com/300x300/f3e5f5/9c27b0?text=파스타키트" alt="파스타키트">
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">홈레스토랑 파스타 키트</h3>
                     <div class="card-price">
                         <span class="card-discount">30%</span>
-                        <span>13,900원</span>
+                        <span>15,900원</span>
+                        <div class="card-original-price">22,900원</div>
                     </div>
-                    <div class="card-original-price">19,900원</div>
-                    <div class="card-stats">
-                        <span>⭐ 4.7</span>
-                        <span>리뷰 1,789</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="content-card">
-                <div class="card-image">
-                    <img src="https://via.placeholder.com/300x300/e8f5e9/4caf50?text=샐러드키트" alt="샐러드키트">
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">다이어트 샐러드 5종 세트</h3>
-                    <div class="card-price">
-                        <span class="card-discount">50%</span>
-                        <span>24,900원</span>
-                    </div>
-                    <div class="card-original-price">49,900원</div>
-                    <div class="card-stats">
-                        <span>⭐ 4.9</span>
-                        <span>리뷰 4,567</span>
+                    <div class="ingredients-stats card-stats">
+                        <span><img src="/assets/icons/ic-stars.png" alt="평점">4.8</span>
+                        <span><img src="/assets/icons/ic-review.png" alt="리뷰">1,234</span>
                     </div>
                 </div>
             </div>
-            
-            <div class="content-card">
+
+            <div class="ingredients-card content-card">
                 <div class="card-image">
-                    <img src="https://via.placeholder.com/300x300/fff3e0/ff9800?text=도시락세트" alt="도시락세트">
+                    <img src="https://cdn-dantats.stunning.kr/prod/portfolios/c66aaf60-74e0-4814-b552-cd3020d43afd/covers/order_sub_2865765_1_211012212956.png.small?s=800x800&t=crop&q=80&f=webp"
+                        alt="한식 밀키트">
                 </div>
                 <div class="card-content">
-                    <h3 class="card-title">일주일 도시락 정기배송</h3>
-                    <div class="card-price">
-                        <span class="card-discount">첫구매 45%</span>
-                        <span>39,900원</span>
+                    <div class="ingredients-title-container">
+                        <h3 class="card-title">한식키트 2종 (떡볶이 & 부대찌개)</h3>
+                        <img src="/assets/icons/ic-empty-shopping-cart.png" alt="장바구니">
                     </div>
-                    <div class="card-original-price">69,900원</div>
-                    <div class="card-stats">
-                        <span>⭐ 4.8</span>
-                        <span>리뷰 6,789</span>
+                    <div class="card-price">
+                        <span class="card-discount">30%</span>
+                        <span>15,900원</span>
+                        <div class="card-original-price">22,900원</div>
+                    </div>
+                    <div class="ingredients-stats card-stats">
+                        <span><img src="/assets/icons/ic-stars.png" alt="평점">4.8</span>
+                        <span><img src="/assets/icons/ic-review.png" alt="리뷰">1,234</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ingredients-card content-card">
+                <div class="card-image">
+                    <img src="https://newsimg.hankookilbo.com/cms/articlerelease/2021/07/31/f24809e6-ed0d-486e-a3cf-2cf42c103c56.jpg"
+                        alt="곰탕">
+                </div>
+                <div class="card-content">
+                    <div class="ingredients-title-container">
+                        <h3 class="card-title">곰탕 밀키트 1인분</h3>
+                        <img src="/assets/icons/ic-empty-shopping-cart.png" alt="장바구니">
+                    </div>
+                    <div class="card-price">
+                        <span class="card-discount">30%</span>
+                        <span>15,900원</span>
+                        <div class="card-original-price">22,900원</div>
+                    </div>
+                    <div class="ingredients-stats card-stats">
+                        <span><img src="/assets/icons/ic-stars.png" alt="평점">4.8</span>
+                        <span><img src="/assets/icons/ic-review.png" alt="리뷰">1,234</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ingredients-card content-card">
+                <div class="card-image">
+                    <img src="https://halicrty8541.edge.naverncp.com/data/mall_data/images/product/00/00/00/21/33/m_0000002133.gif"
+                        alt="닭갈비">
+                </div>
+                <div class="card-content">
+                    <div class="ingredients-title-container">
+                        <h3 class="card-title">닭갈비 2종 택 1</h3>
+                        <img src="/assets/icons/ic-empty-shopping-cart.png" alt="장바구니">
+                    </div>
+                    <div class="card-price">
+                        <span class="card-discount">30%</span>
+                        <span>15,900원</span>
+                        <div class="card-original-price">22,900원</div>
+                    </div>
+                    <div class="ingredients-stats card-stats">
+                        <span><img src="/assets/icons/ic-stars.png" alt="평점">4.8</span>
+                        <span><img src="/assets/icons/ic-review.png" alt="리뷰">1,234</span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
-        <!-- Footer -->
+
+    <!-- ========== 푸터 섹션 ========== -->
     <footer class="footer">
         <div class="footer-container">
-            <div class="footer-section">
-                <h3>고객센터 ></h3>
-                <p class="footer-phone">1670-0876 <span>09:00~18:00</span></p>
-                <ul>
-                    <li>평일: 전체 문의 상담</li>
-                    <li>토요일, 공휴일: 오늘의집 직접배송 주문건 상담</li>
-                    <li>일요일: 휴무</li>
-                </ul>
-                <p class="footer-time">카톡 상담(평일 09:00~18:00)</p>
-                <button class="footer-btn">이메일 문의</button>
-            </div>
-            
-            <div class="footer-links">
-                <div class="footer-column">
-                    <a href="#">회사소개</a>
-                    <a href="#">채용정보</a>
+            <div class="footer-array">
+                <div class="footer-logo">PickCook</div>
+
+                <div class="footer-links">
+                    <a href="#">이메일 문의</a>
                     <a href="#">이용약관</a>
-                    <a href="#">개인정보 처리방침</a>
-                    <a href="#">공지사항</a>
-                    <a href="#">건의보호센터</a>
-                </div>
-                
-                <div class="footer-column">
-                    <a href="#">입점신청</a>
                     <a href="#">제휴/광고 문의</a>
-                    <a href="#">시공파트너 안내</a>
-                    <a href="#">파트너 개인정보 처리방침</a>
                     <a href="#">상품광고 소개</a>
-                    <a href="#">고객의 소리</a>
                 </div>
+
+                <div class="footer-social">
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#"><i class="fa-regular fa-envelope"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-copyright">
+                © 2025 PickCook. All rights reserved.
             </div>
         </div>
     </footer>
 </body>
+
 </html>

@@ -19,7 +19,7 @@
 .logo {
     font-size: 24px;
     font-weight: bold;
-    color: #d63823;
+    color: var(--color-primary-strong);
     text-decoration: none;
     margin-right: 30px;
 }
@@ -33,13 +33,13 @@
 
 .nav-menu a {
     text-decoration: none;
-    color: #424242;
+    color: var(--color-gray);
     font-size: 16px;
     font-weight: 500;
 }
 
 .nav-menu a.active {
-    color: #d63823;
+    color: var(--color-primary-strong);
 }
 
 .search-bar {
@@ -59,6 +59,7 @@
     width: 100%;
     font-size: 14px;
     font-family: inherit;
+    color: var(--color-dark-strong);
 }
 
 .header-right {
@@ -67,18 +68,27 @@
     align-items: center;
 }
 
-.header-right a {
+.header-right>a {
     text-decoration: none;
-    color: #424242;
+    color: var(--color-gray);
     font-size: 14px;
+    font-weight: 400;
+}
+
+a:hover {
+    color: var(--color-primary-strong);
 }
 
 .write-btn {
-    background-color: #ff6b6b;
-    color: white;
+    background-color: var(--color-primary);
+    color: white !important;
     padding: 8px 16px;
     border-radius: 4px;
     text-decoration: none;
     font-size: 14px;
     font-weight: 500;
+}
+
+.write-btn:hover {
+    background-color: var(--color-primary-dark);
 }
