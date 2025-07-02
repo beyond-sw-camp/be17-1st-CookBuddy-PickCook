@@ -1,5 +1,9 @@
-<script setup></script>
+<script setup>
+import Recipe from '@/views/Recipe.vue'
+</script>
 
-<template></template>
+<template>
+  <Recipe />
+</template>
 
 <style scoped></style>
