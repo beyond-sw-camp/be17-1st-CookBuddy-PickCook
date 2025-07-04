@@ -6,7 +6,6 @@ import RecipeCard from '@/components/RecipeCard.vue'
 const recipeList = reactive([])
 const getRecipeList = async () => {
   const data = await api.recipeList()
-  console.log(data.success)
   if (data && data.success) {
     if (data.results) {
       recipeList.push(...data.results)
