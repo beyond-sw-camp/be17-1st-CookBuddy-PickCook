@@ -1,9 +1,10 @@
 <script setup>
-import Recipe from '@/views/Recipe.vue'
+import Footer from './components/Footer.vue'
 </script>
 
 <template>
-  <Recipe />
+  <RouterView />
+  <Footer />
 </template>
 
 <style scoped></style>

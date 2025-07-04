@@ -16,4 +16,23 @@ const recipeList = async () => {
   return data
 }
 
-export default { recipeList }
+const getRecipe = async () => {
+  let data = {}
+  let url = '/recipes/recommendations.json'
+
+  await api
+    .get(url, {
+      responseType: 'json',
+    })
+    .then((res) => {
+      data = res.data.results[0]
+    })
+    .catch((error) => {
+      console.error('❌ API 오류:', error)
+      data = error.response?.data || { success: false }
+    })
+
+  return data
+}
+
+export default { recipeList, getRecipe }
