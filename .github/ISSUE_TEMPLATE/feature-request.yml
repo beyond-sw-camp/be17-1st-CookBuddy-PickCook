@@ -1,25 +1,25 @@
 name: 일반 작업 이슈
-description: 작업 내용을 기록하고 추적할 때 사용하는 템플릿
+description: "작업 내용을 기록하고 추적할 때 사용하는 템플릿"
 title: "[Task] "
 labels: ["task"]
 body:
   - type: textarea
     id: description
     attributes:
-      label: 📝 이슈 설명
-      description: 이슈의 목적이나 배경을 간단히 작성해주세요 (예: 사용자가 재료를 검색해 레시피를 찾을 수 있도록 구현)
-      placeholder: 이 기능이 왜 필요한지 간단히 적어주세요
+      label: "📝 이슈 설명"
+      description: "이슈의 목적이나 배경을 간단히 작성해주세요 (예: 사용자가 재료를 검색해 레시피를 찾을 수 있도록 구현)"
+      placeholder: "이 기능이 왜 필요한지 간단히 적어주세요"
     validations:
       required: true
 
   - type: textarea
     id: tasks
     attributes:
-      label: ✅ 작업 내용
-      description: 해야 할 작업을 항목별로 적어주세요 (예: - [ ] UI 구성, - [ ] API 연결 등)
+      label: "✅ 작업 내용"
+      description: "해야 할 작업을 항목별로 적어주세요 (예: - [ ] UI 구성, - [ ] API 연결 등)"
       placeholder: |
-        - [ ] 할 일 1
-        - [ ] 할 일 2
+        - [ ] 할 일 1  
+        - [ ] 할 일 2  
         - [ ] 할 일 3
     validations:
       required: true
@@ -27,8 +27,8 @@ body:
   - type: input
     id: related-issues
     attributes:
-      label: 🔗 관련 이슈
-      description: 관련된 이슈 번호가 있다면 작성해주세요 (예: #5)
+      label: "🔗 관련 이슈"
+      description: "관련된 이슈 번호가 있다면 작성해주세요 (예: #5)"
       placeholder: "#5"
     validations:
       required: false
