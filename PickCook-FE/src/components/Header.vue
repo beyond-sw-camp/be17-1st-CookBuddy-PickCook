@@ -19,7 +19,7 @@ const isActive = (path) => {
             <a href="/index.html" class="logo">PickCook</a>
             <nav class="nav-menu">
                 <RouterLink to="/" :class="{ active: isActive('/') }">홈</RouterLink>
-                <RouterLink to="/" :class="{ active: isActive('/refrigerator') }">냉장고</RouterLink>
+                <RouterLink to="/refrigerator" :class="{ active: isActive('/refrigerator') }">냉장고</RouterLink>
                 <RouterLink to="/recipe" :class="{ active: isActive('/recipe') }">레시피</RouterLink>
                 <RouterLink to="/shopping" :class="{ active: isActive('/shopping') }">쇼핑</RouterLink>
                 <RouterLink to="/community" :class="{ active: isActive('/community') }">커뮤니티</RouterLink>
