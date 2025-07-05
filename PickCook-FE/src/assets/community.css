@@ -72,12 +72,12 @@
 }
 
 .c-board-flexbox {
-        gap: 32px;
+    gap: 32px;
     margin-bottom: 8px;
     margin-top: 8px;
-    display: flex
-;
+    display: flex;
     flex-direction: row;
+    justify-content: space-between;
 }
 
 .c-board-title {
