@@ -1,0 +1,11 @@
+<script setup>
+
+</script>
+
+<template>
+<div>마이페이지 틀</div>
+</template>
+
+<style scoped>
+
+</style>

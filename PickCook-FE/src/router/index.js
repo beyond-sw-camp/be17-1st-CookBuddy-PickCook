@@ -1,3 +1,12 @@
+import Cart from '@/components/Cart.vue'
+import Info from '@/components/Info.vue'
+import LikeList from '@/components/LikeList.vue'
+import OrderList from '@/components/OrderList.vue'
+import ReplyList from '@/components/ReplyList.vue'
+import ScrapList from '@/components/ScrapList.vue'
+import WriteList from '@/components/WriteList.vue'
+import Main from '@/views/Main.vue'
+import Mypage from '@/views/Mypage.vue'
 import Recipe from '@/views/Recipe.vue'
 import RecipeDetail from '@/views/RecipeDetail.vue'
 import { createRouter, createWebHistory } from 'vue-router'
@@ -38,6 +47,24 @@ const router = createRouter({
       path: '/shopping/detail',
       name: 'shoppingdetail',
       component: Shopping_detail,
+    },
+    {
+      path: '/mypage',
+      component: Mypage,
+      children: [
+        { path: 'cart', name: 'mypage-cart', component: Cart },       
+        { path: 'order_list', name: 'mypage-order', component: OrderList }, 
+        { path: 'scrap_list', name: 'mypage-scrap', component: ScrapList },    
+        { path: 'like_list', name: 'mypage-like', component: LikeList },   
+        { path: 'reply_list', name: 'mypage-reply', component: ReplyList },   
+        { path: 'info', name: 'mypage-info', component: Info },   
+        { path: 'write_list', name: 'mypage-write', component: WriteList },   
+      ],
+    },
+    {
+      path: '/',
+      name: 'main',
+      component: Main,
     },
   ],
 })
