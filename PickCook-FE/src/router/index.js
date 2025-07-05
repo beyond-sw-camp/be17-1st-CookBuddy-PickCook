@@ -14,6 +14,7 @@ import Community from '@/views/Community.vue'
 import CommunityDetail from '@/views/CommunityDetail.vue'
 import Shopping from '@/views/Shopping.vue'
 import Shopping_detail from '@/views/Shopping_detail.vue'
+import Refrigerator from '@/views/Refrigerator.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -65,6 +66,11 @@ const router = createRouter({
       path: '/',
       name: 'main',
       component: Main,
+    },
+    {
+      path: '/refrigerator',
+      name: 'refrigerator',
+      component: Refrigerator,
     },
   ],
 })
