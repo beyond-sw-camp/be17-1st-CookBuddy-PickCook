@@ -31,6 +31,10 @@ function handleClick() {
         <span class="ingredient-item-exdate">{{ props.exDate }}</span>
       </div>
     </div>
-    <img class="ingredient-setting-button" src="/assets/icons/ic-banner-right.png" alt="재료 수정 및 삭제" />
+    <img
+      class="ingredient-setting-button"
+      src="/assets/icons/ic-banner-right.png"
+      alt="재료 수정 및 삭제"
+    />
   </div>
 </template>
