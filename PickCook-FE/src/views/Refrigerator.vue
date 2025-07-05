@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, computed, watch } from 'vue'
 import IngredientCard from '@/components/IngredientCard.vue'
 import AddIngredientModal from '@/components/AddIngredientModal.vue'
 import EditIngredientModal from '@/components/EditIngredientModal.vue'
@@ -9,7 +9,9 @@ const showSnackbar = ref(false)
 const lastDeletedItem = ref(null)
 const lastDeletedIndex = ref(null)
 
-// 모달 상태 관리
+const searchQuery = ref('')
+const searchedKeyword = ref('')
+
 const showAddModal = ref(false)
 const showEditModal = ref(false)
 
@@ -59,7 +61,18 @@ const items = ref([
   },
 ])
 
-function getDaysLeft(dateStr) {
+watch(searchQuery, (newVal) => {
+  searchedKeyword.value = newVal.trim()
+})
+
+const filteredItems = computed(() => {
+  if (!searchedKeyword.value) return items.value
+  return items.value.filter(item =>
+    item.name.toLowerCase().includes(searchedKeyword.value.toLowerCase())
+  )
+})
+
+const getDaysLeft = (dateStr) => {
   const today = new Date()
   const target = new Date(dateStr)
   const diff = Math.ceil((target - today) / (1000 * 60 * 60 * 24))
@@ -68,8 +81,7 @@ function getDaysLeft(dateStr) {
   else return `${Math.abs(diff)}일 지남`
 }
 
-// AddIngredientModal에서 emit한 데이터 받아서 추가 처리
-function handleAddIngredient({ name, qnt, rawDate, category, location }) {
+const handleAddIngredient = ({ name, qnt, rawDate, category, location }) => {
   const imageFileName = categoryImageMap[category] || 'ic-ingredient-category-etc'
   const imageUrl = `/assets/icons/${imageFileName}.png`
   const exDate = getDaysLeft(rawDate)
@@ -78,17 +90,17 @@ function handleAddIngredient({ name, qnt, rawDate, category, location }) {
   items.value.push(newItem)
 }
 
-function openEditModal(index) {
+const openEditModal = (index) => {
   selectedIngredientIndex.value = index
   showEditModal.value = true
 }
 
-function closeEditModal() {
+const closeEditModal = () => {
   showEditModal.value = false
   selectedIngredientIndex.value = null
 }
 
-function submitEdit(editedData) {
+const submitEdit = (editedData) => {
   if (selectedIngredientIndex.value !== null) {
     items.value[selectedIngredientIndex.value] = {
       ...items.value[selectedIngredientIndex.value],
@@ -99,7 +111,7 @@ function submitEdit(editedData) {
   closeEditModal()
 }
 
-function deleteIngredient() {
+const deleteIngredient = () => {
   if (selectedIngredientIndex.value !== null && items.value[selectedIngredientIndex.value]) {
     lastDeletedItem.value = items.value[selectedIngredientIndex.value]
     lastDeletedIndex.value = selectedIngredientIndex.value
@@ -110,7 +122,7 @@ function deleteIngredient() {
   setTimeout(() => (showSnackbar.value = false), 5000)
 }
 
-function undoDelete() {
+const undoDelete = () => {
   if (lastDeletedItem.value && lastDeletedIndex.value !== null) {
     items.value.splice(lastDeletedIndex.value, 0, lastDeletedItem.value)
     lastDeletedItem.value = null
@@ -123,21 +135,36 @@ function undoDelete() {
   <!-- 검색 필터 영역 -->
   <div class="refrigerator-search-help-section-container filter-section">
     <div class="refrigerator-search-help-section">
-      <div class="refrigerator-filter-container">
+        <div class="refrigerator-filter-container">
         <span class="refrigerator-filter-items">정렬 &nbsp;▼</span>
         <span class="refrigerator-filter-items">카테고리 &nbsp;▼</span>
         <span class="refrigerator-filter-items">재고위치 &nbsp;▼</span>
-      </div>
-      <div class="search-bar-container">
-        <input id="refrigerator-item-search" type="text" />
-        <div id="refrigerator-item-search-button">
-          <img src="/assets/icons/ic-white-bold-search.png" alt="돋보기" />
         </div>
-      </div>
+
+        <div class="search-bar-container">
+        <div class="search-input-wrapper">
+            <input
+            id="refrigerator-item-search"
+            type="text"
+            v-model="searchQuery"
+            placeholder="재료명을 입력하세요"
+            />
+            <button
+            v-if="searchQuery"
+            class="input-clear-btn"
+            @click="searchQuery = ''"
+            aria-label="입력 초기화"
+            >×</button>
+        </div>
+        <div id="refrigerator-item-search-button">
+            <img src="/assets/icons/ic-white-bold-search.png" alt="돋보기" />
+        </div>
+        </div>
     </div>
   </div>
-
-  <div class="user-search-keyword"><span>'당근'</span>에 대한 검색 결과</div>
+  <div v-if="searchedKeyword" class="user-search-keyword" >
+     <span>'{{ searchedKeyword }}'</span>에 대한 검색 결과({{ filteredItems.length }})
+  </div>
 
   <!-- 냉장고 섹션 -->
   <div class="refrigerator-section-container content-section">
@@ -147,7 +174,7 @@ function undoDelete() {
       <div class="refrigerator-item-save-boxes">
         <div class="refrigerator-item-save-scroll-boxes">
           <IngredientCard
-            v-for="(item, i) in items.filter((item) => item.location === '실외 저장소')"
+            v-for="(item, i) in filteredItems.filter((item) => item.location === '실외 저장소')"
             :key="item.name + '-' + i"
             :image-url="item.imageUrl"
             v-bind="item"
@@ -162,7 +189,7 @@ function undoDelete() {
       <div class="refrigerator-item-save-boxes">
         <div class="refrigerator-item-save-scroll-boxes">
           <IngredientCard
-            v-for="(item, i) in items.filter((item) => item.location === '냉장실')"
+            v-for="(item, i) in filteredItems.filter((item) => item.location === '냉장실')"
             :key="item.name + '-' + i"
             :image-url="item.imageUrl"
             v-bind="item"
@@ -177,7 +204,7 @@ function undoDelete() {
       <div class="refrigerator-item-save-boxes">
         <div class="refrigerator-item-save-scroll-boxes">
           <IngredientCard
-            v-for="(item, i) in items.filter((item) => item.location === '냉동실')"
+            v-for="(item, i) in filteredItems.filter((item) => item.location === '냉동실')"
             :key="item.name + '-' + i"
             :image-url="item.imageUrl"
             v-bind="item"
