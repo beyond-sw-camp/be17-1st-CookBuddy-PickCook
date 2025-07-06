@@ -167,7 +167,7 @@ const undoDelete = () => {
   </div>
 
   <!-- 냉장고 섹션 -->
-  <div class="refrigerator-section-container content-section">
+  <div class="refrigerator-section-container refrigerator-content-section">
     <!-- 실외 저장소 -->
     <div id="outdoor-storage-container" class="refrigerator-sections">
       <span class="refrigerator-section-name">실외 저장소</span>
