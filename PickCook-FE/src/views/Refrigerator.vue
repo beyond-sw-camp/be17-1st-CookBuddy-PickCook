@@ -12,7 +12,6 @@ const lastDeletedIndex = ref(null)
 
 const searchQuery = ref('')
 const searchedKeyword = ref('')
-const composing = ref(false)
 
 const showAddModal = ref(false)
 const showEditModal = ref(false)
@@ -23,6 +22,7 @@ function getItemIndex(item) {
   return items.value.findIndex((it) => it === item)
 }
 
+// 카테고리별 이미지 파일명
 const categoryImageMap = {
   유제품: 'ic-ingredient-category-milk',
   육류: 'ic-ingredient-category-meat',
@@ -35,6 +35,7 @@ const categoryImageMap = {
   기타: 'ic-ingredient-category-etc',
 }
 
+// 재료 목록 불러오기
 const getIngredients = async () => {
   const data = await api.getIngredients()
 
@@ -54,74 +55,182 @@ const getIngredients = async () => {
   }
 }
 
+// 검색 결과 업데이트
 const updateSearch = () => {
   searchedKeyword.value = searchQuery.value.trim()
 }
 
+// 검색 입력값 초기화
 const clearSearch = () => {
   searchQuery.value = ''
   searchedKeyword.value = ''
 }
 
-const getChosung = (str) => {
-  const CHO = [
-    'ㄱ',
-    'ㄲ',
-    'ㄴ',
-    'ㄷ',
-    'ㄸ',
-    'ㄹ',
-    'ㅁ',
-    'ㅂ',
-    'ㅃ',
-    'ㅅ',
-    'ㅆ',
-    'ㅇ',
-    'ㅈ',
-    'ㅉ',
-    'ㅊ',
-    'ㅋ',
-    'ㅌ',
-    'ㅍ',
-    'ㅎ',
-  ]
-  let result = ''
-  for (let i = 0; i < str.length; i++) {
-    const code = str.charCodeAt(i) - 44032
-    if (code >= 0 && code <= 11171) {
-      result += CHO[Math.floor(code / 588)]
-    } else {
-      result += str[i]
-    }
-  }
-  return result
-}
-
-const onCompositionStart = () => {
-  composing.value = true
-}
-
-const onCompositionEnd = (event) => {
-  composing.value = false
-  searchQuery.value = event.target.value
-  updateSearch()
-}
-
+// 키보드 입력 -> 검색 결과 업데이트
 const onInput = (event) => {
   searchQuery.value = event.target.value
   updateSearch()
 }
 
-const filteredItems = computed(() => {
-  const keyword = searchedKeyword.value.toLowerCase()
-  const keywordChosung = getChosung(keyword)
+// 한글 초성
+const CHOSEONG = [
+  'ㄱ',
+  'ㄲ',
+  'ㄴ',
+  'ㄷ',
+  'ㄸ',
+  'ㄹ',
+  'ㅁ',
+  'ㅂ',
+  'ㅃ',
+  'ㅅ',
+  'ㅆ',
+  'ㅇ',
+  'ㅈ',
+  'ㅉ',
+  'ㅊ',
+  'ㅋ',
+  'ㅌ',
+  'ㅍ',
+  'ㅎ',
+]
 
-  return items.value.filter((item) => {
-    const name = item.name.toLowerCase()
-    return name.includes(keyword) || getChosung(name).includes(keywordChosung)
-  })
+// 한글 중성
+const JUNGSEONG = [
+  'ㅏ',
+  'ㅐ',
+  'ㅑ',
+  'ㅒ',
+  'ㅓ',
+  'ㅔ',
+  'ㅕ',
+  'ㅖ',
+  'ㅗ',
+  'ㅘ',
+  'ㅙ',
+  'ㅚ',
+  'ㅛ',
+  'ㅜ',
+  'ㅝ',
+  'ㅞ',
+  'ㅟ',
+  'ㅠ',
+  'ㅡ',
+  'ㅢ',
+  'ㅣ',
+]
+
+// 한글 종성
+const JONGSEONG = [
+  '',
+  'ㄱ',
+  'ㄲ',
+  'ㄳ',
+  'ㄴ',
+  'ㄵ',
+  'ㄶ',
+  'ㄷ',
+  'ㄹ',
+  'ㄺ',
+  'ㄻ',
+  'ㄼ',
+  'ㄽ',
+  'ㄾ',
+  'ㄿ',
+  'ㅀ',
+  'ㅁ',
+  'ㅂ',
+  'ㅄ',
+  'ㅅ',
+  'ㅆ',
+  'ㅇ',
+  'ㅈ',
+  'ㅊ',
+  'ㅋ',
+  'ㅌ',
+  'ㅍ',
+  'ㅎ',
+]
+
+const BASE = 0xac00, // 한글 음절표 시작값
+  JUNG_COUNT = 21, // 중성 개수
+  JONG_COUNT = 28 // 종성 개수
+
+// 한글 분해
+const decomposeHangul = (char) => {
+  const code = char.charCodeAt(0)
+  if (code < BASE || code > 0xd7a3) return { ch: char, jo: '', jong: '' }
+  const i = code - BASE
+  return {
+    ch: CHOSEONG[Math.floor(i / (JUNG_COUNT * JONG_COUNT))],
+    jo: JUNGSEONG[Math.floor((i % (JUNG_COUNT * JONG_COUNT)) / JONG_COUNT)],
+    jong: JONGSEONG[i % JONG_COUNT],
+  }
+}
+
+const decomposeString = (str) => {
+  return [...str].map(decomposeHangul)
+}
+
+// 종성 → 초성 이동
+const moveFinalConsonantForward = (str) => {
+  if (str.length < 1) return str
+  const last = str[str.length - 1]
+  const d = decomposeHangul(last)
+  if (!d.jong) return null
+
+  const code = last.charCodeAt(0)
+  const i = code - BASE
+  const base = Math.floor(i / JONG_COUNT) * JONG_COUNT
+  const newChar = String.fromCharCode(BASE + base)
+  return str.slice(0, -1) + newChar + d.jong
+}
+
+// 부분 포함 검사
+const isPartialMatch = (patternArr, textArr) => {
+  const lenP = patternArr.length,
+    lenT = textArr.length
+  for (let i = 0; i <= lenT - lenP; i++) {
+    let matched = true
+    for (let j = 0; j < lenP; j++) {
+      const p = patternArr[j],
+        t = textArr[i + j]
+      if (p.ch && p.ch !== t.ch) {
+        matched = false
+        break
+      }
+      if (p.jo && p.jo !== t.jo) {
+        matched = false
+        break
+      }
+    }
+    if (matched) return true
+  }
+  return false
+}
+
+// 최종 매칭 함수
+const hangulMatch = (text, keyword) => {
+  const textArr = decomposeString(text)
+  const keyArr = decomposeString(keyword)
+  if (isPartialMatch(keyArr, textArr)) return true
+
+  const movedKeyword = moveFinalConsonantForward(keyword)
+  if (movedKeyword) {
+    const movedKeyArr = decomposeString(movedKeyword)
+    return isPartialMatch(movedKeyArr, textArr)
+  }
+  return false
+}
+
+// 검색 결과 필터링
+const filteredItems = computed(() => {
+  const keyword = searchedKeyword.value.trim().toLowerCase()
+  if (!keyword) return items.value
+  return items.value.filter((item) => hangulMatch(item.name.toLowerCase(), keyword))
 })
 
+// 남은 소비기한 계산
 const getDaysLeft = (dateStr) => {
   const today = new Date()
   const target = new Date(dateStr)
@@ -131,6 +240,7 @@ const getDaysLeft = (dateStr) => {
   else return `${Math.abs(diff)}일 지남`
 }
 
+// 재료 추가
 const handleAddIngredient = ({ name, qnt, rawDate, category, location }) => {
   const imageFileName = categoryImageMap[category] || 'ic-ingredient-category-etc'
   const imageUrl = `/assets/icons/${imageFileName}.png`
@@ -140,16 +250,19 @@ const handleAddIngredient = ({ name, qnt, rawDate, category, location }) => {
   items.value.push(newItem)
 }
 
+// 재료 편집 모달 열기
 const openEditModal = (index) => {
   selectedIngredientIndex.value = index
   showEditModal.value = true
 }
 
+// 재료 편집 모달 닫기
 const closeEditModal = () => {
   showEditModal.value = false
   selectedIngredientIndex.value = null
 }
 
+// 재료 편집 반영
 const submitEdit = (editedData) => {
   if (selectedIngredientIndex.value !== null) {
     items.value[selectedIngredientIndex.value] = {
@@ -161,6 +274,7 @@ const submitEdit = (editedData) => {
   closeEditModal()
 }
 
+// 재료 삭제
 const deleteIngredient = () => {
   if (selectedIngredientIndex.value !== null && items.value[selectedIngredientIndex.value]) {
     lastDeletedItem.value = items.value[selectedIngredientIndex.value]
@@ -172,6 +286,7 @@ const deleteIngredient = () => {
   setTimeout(() => (showSnackbar.value = false), 5000)
 }
 
+// 재료 삭제 되돌리기
 const undoDelete = () => {
   if (lastDeletedItem.value && lastDeletedIndex.value !== null) {
     items.value.splice(lastDeletedIndex.value, 0, lastDeletedItem.value)
@@ -203,8 +318,6 @@ onMounted(() => {
             type="text"
             v-model="searchQuery"
             @input="onInput"
-            @compositionstart="onCompositionStart"
-            @compositionend="onCompositionEnd"
             placeholder="재료명을 입력하세요"
           />
           <button
