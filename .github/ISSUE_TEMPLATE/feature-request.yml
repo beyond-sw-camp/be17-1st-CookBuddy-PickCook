@@ -35,8 +35,8 @@ body:
       placeholder: |
         - [ ] **할 일 1** : 세부 내용
         - [ ] **할 일 2** : 세부 내용
-      validations:
-        required: false
+    validations:
+      required: false
 
   - type: input
     id: related
