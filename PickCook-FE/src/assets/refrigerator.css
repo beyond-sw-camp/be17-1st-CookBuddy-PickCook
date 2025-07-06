@@ -23,6 +23,7 @@
 
 .refrigerator-content-section {
     margin-top: 30px;
+    justify-content: center;
 }
 
 .user-search-keyword>span {
