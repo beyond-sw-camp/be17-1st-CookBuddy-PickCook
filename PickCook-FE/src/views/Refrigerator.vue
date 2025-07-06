@@ -1,5 +1,6 @@
 <script setup>
-import { ref, computed, watch } from 'vue'
+import api from '@/api/refrigerator'
+import { ref, computed, onMounted } from 'vue'
 import IngredientCard from '@/components/IngredientCard.vue'
 import AddIngredientModal from '@/components/AddIngredientModal.vue'
 import EditIngredientModal from '@/components/EditIngredientModal.vue'
@@ -15,6 +16,8 @@ const composing = ref(false)
 
 const showAddModal = ref(false)
 const showEditModal = ref(false)
+
+const items = ref([])
 
 function getItemIndex(item) {
   return items.value.findIndex((it) => it === item)
@@ -32,35 +35,24 @@ const categoryImageMap = {
   기타: 'ic-ingredient-category-etc',
 }
 
-const items = ref([
-  {
-    name: '우유',
-    qnt: '500ml',
-    rawDate: '2025-07-08',
-    exDate: '3일 남음',
-    category: '유제품',
-    imageUrl: '/assets/icons/ic-ingredient-category-milk.png',
-    location: '냉장실',
-  },
-  {
-    name: '고기',
-    qnt: '300g',
-    rawDate: '2025-07-10',
-    exDate: '5일 남음',
-    category: '육류',
-    imageUrl: '/assets/icons/ic-ingredient-category-meat.png',
-    location: '냉동실',
-  },
-  {
-    name: '감자',
-    qnt: '2개',
-    rawDate: '2025-07-04',
-    exDate: '1일 남음',
-    category: '채소',
-    imageUrl: '/assets/icons/ic-ingredient-category-vegetable.png',
-    location: '실외 저장소',
-  },
-])
+const getIngredients = async () => {
+  const data = await api.getIngredients()
+
+  if (data && data.ingredients) {
+    items.value = data.ingredients.map((item) => {
+      const imageFileName = categoryImageMap[item.category] || 'ic-ingredient-category-etc'
+      return {
+        name: item.ingredient_name,
+        rawDate: item.expiration_date,
+        exDate: getDaysLeft(item.expiration_date),
+        category: item.category,
+        qnt: `${item.quantity} ${item.unit}`,
+        imageUrl: `/assets/icons/${imageFileName}.png`,
+        location: item.location,
+      }
+    })
+  }
+}
 
 const updateSearch = () => {
   searchedKeyword.value = searchQuery.value.trim()
@@ -71,9 +63,28 @@ const clearSearch = () => {
   searchedKeyword.value = ''
 }
 
-// 초성 추출 함수
 const getChosung = (str) => {
-  const CHO = ['ㄱ','ㄲ','ㄴ','ㄷ','ㄸ','ㄹ','ㅁ','ㅂ','ㅃ','ㅅ','ㅆ','ㅇ','ㅈ','ㅉ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ']
+  const CHO = [
+    'ㄱ',
+    'ㄲ',
+    'ㄴ',
+    'ㄷ',
+    'ㄸ',
+    'ㄹ',
+    'ㅁ',
+    'ㅂ',
+    'ㅃ',
+    'ㅅ',
+    'ㅆ',
+    'ㅇ',
+    'ㅈ',
+    'ㅉ',
+    'ㅊ',
+    'ㅋ',
+    'ㅌ',
+    'ㅍ',
+    'ㅎ',
+  ]
   let result = ''
   for (let i = 0; i < str.length; i++) {
     const code = str.charCodeAt(i) - 44032
@@ -101,12 +112,11 @@ const onInput = (event) => {
   updateSearch()
 }
 
-// 필터링
 const filteredItems = computed(() => {
   const keyword = searchedKeyword.value.toLowerCase()
   const keywordChosung = getChosung(keyword)
 
-  return items.value.filter(item => {
+  return items.value.filter((item) => {
     const name = item.name.toLowerCase()
     return name.includes(keyword) || getChosung(name).includes(keywordChosung)
   })
@@ -170,20 +180,25 @@ const undoDelete = () => {
     showSnackbar.value = false
   }
 }
+
+onMounted(() => {
+  getIngredients()
+})
 </script>
+
 <template>
   <!-- 검색 필터 영역 -->
   <div class="refrigerator-search-help-section-container filter-section">
     <div class="refrigerator-search-help-section">
-        <div class="refrigerator-filter-container">
+      <div class="refrigerator-filter-container">
         <span class="refrigerator-filter-items">정렬 &nbsp;▼</span>
         <span class="refrigerator-filter-items">카테고리 &nbsp;▼</span>
         <span class="refrigerator-filter-items">재고위치 &nbsp;▼</span>
-        </div>
+      </div>
 
-        <div class="search-bar-container">
+      <div class="search-bar-container">
         <div class="search-input-wrapper">
-            <input
+          <input
             id="refrigerator-item-search"
             type="text"
             v-model="searchQuery"
@@ -191,22 +206,24 @@ const undoDelete = () => {
             @compositionstart="onCompositionStart"
             @compositionend="onCompositionEnd"
             placeholder="재료명을 입력하세요"
-            />
-            <button
+          />
+          <button
             v-if="searchQuery"
             class="input-clear-btn"
             @click="clearSearch"
             aria-label="입력 초기화"
-            >×</button>
+          >
+            ×
+          </button>
         </div>
         <div id="refrigerator-item-search-button">
-            <img src="/assets/icons/ic-white-bold-search.png" alt="돋보기" />
+          <img src="/assets/icons/ic-white-bold-search.png" alt="돋보기" />
         </div>
-        </div>
+      </div>
     </div>
   </div>
-  <div v-if="searchedKeyword" class="user-search-keyword" >
-     <span>'{{ searchedKeyword }}'</span>에 대한 검색 결과({{ filteredItems.length }})
+  <div v-if="searchedKeyword" class="user-search-keyword">
+    <span>'{{ searchedKeyword }}'</span>에 대한 검색 결과({{ filteredItems.length }})
   </div>
 
   <!-- 냉장고 섹션 -->
@@ -218,10 +235,10 @@ const undoDelete = () => {
         <div class="refrigerator-item-save-scroll-boxes">
           <IngredientCard
             v-for="(item, i) in filteredItems.filter((item) => item.location === '실외 저장소')"
-            :key="item.name + '-' + i"
+            :key="item.ingredient_id || item.name + '-' + i"
             :image-url="item.imageUrl"
             v-bind="item"
-            @click="() => openEditModal(getItemIndex(item))"
+            @click="openEditModal(getItemIndex(item))"
           />
         </div>
       </div>
@@ -233,10 +250,10 @@ const undoDelete = () => {
         <div class="refrigerator-item-save-scroll-boxes">
           <IngredientCard
             v-for="(item, i) in filteredItems.filter((item) => item.location === '냉장실')"
-            :key="item.name + '-' + i"
+            :key="item.ingredient_id || item.name + '-' + i"
             :image-url="item.imageUrl"
             v-bind="item"
-            @click="() => openEditModal(getItemIndex(item))"
+            @click="openEditModal(getItemIndex(item))"
           />
         </div>
       </div>
@@ -248,10 +265,10 @@ const undoDelete = () => {
         <div class="refrigerator-item-save-scroll-boxes">
           <IngredientCard
             v-for="(item, i) in filteredItems.filter((item) => item.location === '냉동실')"
-            :key="item.name + '-' + i"
+            :key="item.ingredient_id || item.name + '-' + i"
             :image-url="item.imageUrl"
             v-bind="item"
-            @click="() => openEditModal(getItemIndex(item))"
+            @click="openEditModal(getItemIndex(item))"
           />
         </div>
       </div>
