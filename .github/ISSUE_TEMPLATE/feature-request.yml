@@ -33,8 +33,8 @@ body:
       label: 📚 할 일 목록
       description: 이 이슈에서 처리해야 할 작업들을 체크리스트로 작성해 주세요.
       options:
-        - label: '"**할 일 1** : 세부 내용"'
-        - label: '"**할 일 2** : 세부 내용"'
+        - label: "**할 일 1** : 세부 내용"
+        - label: "**할 일 2** : 세부 내용"
 
   - type: input
     id: related
