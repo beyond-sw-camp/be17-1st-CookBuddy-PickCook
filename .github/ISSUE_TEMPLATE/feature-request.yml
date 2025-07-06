@@ -33,14 +33,14 @@ body:
       label: 📚 할 일 목록
       description: 이 이슈에서 처리해야 할 작업들을 체크리스트로 작성해 주세요.
       options:
-        - label: "**할 일 1** : 세부 내용"
-        - label: "**할 일 2** : 세부 내용"
+        - label: '"**할 일 1** : 세부 내용"'
+        - label: '"**할 일 2** : 세부 내용"'
 
   - type: input
     id: related
     attributes:
       label: 🔄 관련 작업
-      description: 관련된 작업이나 PR 번호가 있다면 작성해 주세요 (예: #1234)
+      description: "관련된 작업이나 PR 번호가 있다면 작성해 주세요 (예: #1234)"
       placeholder: "#1234 (optional)"
     validations:
       required: false
