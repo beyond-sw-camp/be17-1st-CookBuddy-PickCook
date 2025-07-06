@@ -11,6 +11,7 @@ const lastDeletedIndex = ref(null)
 
 const searchQuery = ref('')
 const searchedKeyword = ref('')
+const composing = ref(false)
 
 const showAddModal = ref(false)
 const showEditModal = ref(false)
@@ -61,15 +62,54 @@ const items = ref([
   },
 ])
 
-watch(searchQuery, (newVal) => {
-  searchedKeyword.value = newVal.trim()
-})
+const updateSearch = () => {
+  searchedKeyword.value = searchQuery.value.trim()
+}
 
+const clearSearch = () => {
+  searchQuery.value = ''
+  searchedKeyword.value = ''
+}
+
+// 초성 추출 함수
+const getChosung = (str) => {
+  const CHO = ['ㄱ','ㄲ','ㄴ','ㄷ','ㄸ','ㄹ','ㅁ','ㅂ','ㅃ','ㅅ','ㅆ','ㅇ','ㅈ','ㅉ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ']
+  let result = ''
+  for (let i = 0; i < str.length; i++) {
+    const code = str.charCodeAt(i) - 44032
+    if (code >= 0 && code <= 11171) {
+      result += CHO[Math.floor(code / 588)]
+    } else {
+      result += str[i]
+    }
+  }
+  return result
+}
+
+const onCompositionStart = () => {
+  composing.value = true
+}
+
+const onCompositionEnd = (event) => {
+  composing.value = false
+  searchQuery.value = event.target.value
+  updateSearch()
+}
+
+const onInput = (event) => {
+  searchQuery.value = event.target.value
+  updateSearch()
+}
+
+// 필터링
 const filteredItems = computed(() => {
-  if (!searchedKeyword.value) return items.value
-  return items.value.filter(item =>
-    item.name.toLowerCase().includes(searchedKeyword.value.toLowerCase())
-  )
+  const keyword = searchedKeyword.value.toLowerCase()
+  const keywordChosung = getChosung(keyword)
+
+  return items.value.filter(item => {
+    const name = item.name.toLowerCase()
+    return name.includes(keyword) || getChosung(name).includes(keywordChosung)
+  })
 })
 
 const getDaysLeft = (dateStr) => {
@@ -147,12 +187,15 @@ const undoDelete = () => {
             id="refrigerator-item-search"
             type="text"
             v-model="searchQuery"
+            @input="onInput"
+            @compositionstart="onCompositionStart"
+            @compositionend="onCompositionEnd"
             placeholder="재료명을 입력하세요"
             />
             <button
             v-if="searchQuery"
             class="input-clear-btn"
-            @click="searchQuery = ''"
+            @click="clearSearch"
             aria-label="입력 초기화"
             >×</button>
         </div>
