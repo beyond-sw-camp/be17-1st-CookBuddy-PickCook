@@ -1,6 +1,19 @@
+import Cart from '@/components/Cart.vue'
+import Info from '@/components/Info.vue'
+import LikeList from '@/components/LikeList.vue'
+import OrderList from '@/components/OrderList.vue'
+import ReplyList from '@/components/ReplyList.vue'
+import ScrapList from '@/components/ScrapList.vue'
+import WriteList from '@/components/WriteList.vue'
+import Main from '@/views/Main.vue'
+import Mypage from '@/views/Mypage.vue'
 import Recipe from '@/views/Recipe.vue'
 import RecipeDetail from '@/views/RecipeDetail.vue'
 import { createRouter, createWebHistory } from 'vue-router'
+import Community from '@/views/Community.vue'
+import CommunityDetail from '@/views/CommunityDetail.vue'
+import Shopping from '@/views/Shopping.vue'
+import Shopping_detail from '@/views/Shopping_detail.vue'
 import Login from '@/views/Login.vue'
 import SignupTypeSelect from '@/views/SignupTypeselect.vue'
 import Signup from '@/views/Signup.vue'
@@ -17,6 +30,44 @@ const router = createRouter({
       path: '/recipe/detail',
       name: 'recipedetail',
       component: RecipeDetail,
+    },
+    {
+      path: '/community',
+      name: 'community',
+      component: Community
+    },
+    {
+      path: '/community/detail',
+      name: 'communityDetail',
+      component: CommunityDetail
+    },
+    {
+      path: '/shopping',
+      name: 'shopping',
+      component: Shopping,
+    },
+    {
+      path: '/shopping/detail',
+      name: 'shoppingdetail',
+      component: Shopping_detail,
+    },
+    {
+      path: '/mypage',
+      component: Mypage,
+      children: [
+        { path: 'cart', name: 'mypage-cart', component: Cart },
+        { path: 'order_list', name: 'mypage-order', component: OrderList },
+        { path: 'scrap_list', name: 'mypage-scrap', component: ScrapList },
+        { path: 'like_list', name: 'mypage-like', component: LikeList },
+        { path: 'reply_list', name: 'mypage-reply', component: ReplyList },
+        { path: 'info', name: 'mypage-info', component: Info },
+        { path: 'write_list', name: 'mypage-write', component: WriteList },
+      ],
+    },
+    {
+      path: '/',
+      name: 'main',
+      component: Main,
     },
     {
       path: '/login',
