@@ -17,7 +17,7 @@ import Shopping_detail from '@/views/Shopping_detail.vue'
 import Refrigerator from '@/views/Refrigerator.vue'
 
 import Login from '@/views/Login.vue'
-import SignupTypeSelect from '@/views/SignupTypeselect.vue'
+import SignupTypeSelect from '@/views/SignupTypeSelect.vue'
 import Signup from '@/views/Signup.vue'
 
 const router = createRouter({
@@ -75,7 +75,7 @@ const router = createRouter({
       path: '/refrigerator',
       name: 'refrigerator',
       component: Refrigerator
-    }
+    },
     {
       path: '/login',
       name: 'login',
