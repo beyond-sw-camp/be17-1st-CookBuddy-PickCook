@@ -1,5 +1,5 @@
 import Cart from '@/components/Cart.vue'
-import Info from '@/components/Info.vue'
+import UserInfo from '@/components/UserInfo.vue'
 import LikeList from '@/components/LikeList.vue'
 import OrderList from '@/components/OrderList.vue'
 import ReplyList from '@/components/ReplyList.vue'
@@ -32,12 +32,12 @@ const router = createRouter({
     {
       path: '/community',
       name: 'community',
-      component: Community
+      component: Community,
     },
     {
       path: '/community/:id',
       name: 'communityDetail',
-      component: CommunityDetail
+      component: CommunityDetail,
     },
     {
       path: '/shopping',
@@ -53,13 +53,13 @@ const router = createRouter({
       path: '/mypage',
       component: Mypage,
       children: [
-        { path: 'cart', name: 'mypage-cart', component: Cart },       
-        { path: 'order_list', name: 'mypage-order', component: OrderList }, 
-        { path: 'scrap_list', name: 'mypage-scrap', component: ScrapList },    
-        { path: 'like_list', name: 'mypage-like', component: LikeList },   
-        { path: 'reply_list', name: 'mypage-reply', component: ReplyList },   
-        { path: 'info', name: 'mypage-info', component: Info },   
-        { path: 'write_list', name: 'mypage-write', component: WriteList },   
+        { path: 'cart', name: 'mypage-cart', component: Cart },
+        { path: 'order_list', name: 'mypage-order', component: OrderList },
+        { path: 'scrap_list', name: 'mypage-scrap', component: ScrapList },
+        { path: 'like_list', name: 'mypage-like', component: LikeList },
+        { path: 'reply_list', name: 'mypage-reply', component: ReplyList },
+        { path: 'user_info', name: 'mypage-info', component: UserInfo },
+        { path: 'write_list', name: 'mypage-write', component: WriteList },
       ],
     },
     {
