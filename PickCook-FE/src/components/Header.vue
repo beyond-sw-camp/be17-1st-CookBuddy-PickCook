@@ -16,7 +16,7 @@ const isActive = (path) => {
 <template>
   <header class="header">
         <div class="header-top">
-            <a href="/index.html" class="logo">PickCook</a>
+          <RouterLink to="/" class="logo">PickCook</RouterLink>
             <nav class="nav-menu">
                 <RouterLink to="/" :class="{ active: isActive('/') }">홈</RouterLink>
                 <RouterLink to="/refrigerator" :class="{ active: isActive('/refrigerator') }">냉장고</RouterLink>
@@ -29,8 +29,8 @@ const isActive = (path) => {
                 <span>🔍</span>
             </div>
             <div class="header-right">
-                <a href="/login.html">로그인</a>
-                <a href="/signup_type_select.html">회원가입</a>
+                <RouterLink to="/login">로그인</RouterLink>
+                <RouterLink to="/signup">회원가입</RouterLink>
                 <a href="#">고객센터</a>
                 <a href="#" class="write-btn">글쓰기 &nbsp;&nbsp;▼</a>
             </div>

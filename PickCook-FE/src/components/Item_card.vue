@@ -1,27 +1,33 @@
 <script setup>
-
+//props 정의
+const props = defineProps({
+    product: {
+        type: Object,
+        required: true
+    }
+})
 </script>
 
 <template>
-<a href="/shopping_detail.html">
+<router-link :to="`/shopping/detail/${product.id}`">
     <div class="content-card">
         <div class="card-image">
-            <img src="https://semie.cooking/image/contents/wn/cv/solcqifp/149437687iajp.jpg" alt="유기농채소">
+            <img :src="product.image" :alt="product.title">
         </div>
         <div class="card-content">
-            <h3 class="card-title">[오늘특가] 유기농 채소 모음전</h3>
+            <h3 class="card-title">{{product.title}}</h3>
             <div class="card-price">
-                <span class="card-discount">30%</span>
-                <span>15,900원</span>
+                <span class="card-discount">{{product.discount}}%</span>
+                <span>{{product.price}}</span>
             </div>
-            <div class="card-original-price">22,900원</div>
+            <div class="card-original-price">{{product.originalPrice}}</div>
             <div class="card-stats">
-                <span>⭐ 4.8</span>
-                <span>리뷰 1,234</span>
+                <span>⭐ {{product.rating}}</span>
+                <span>리뷰 {{product.reviewCount}}</span>
             </div>
         </div>
     </div>
-</a>
+</router-link>
 </template>
 
 <style scoped>

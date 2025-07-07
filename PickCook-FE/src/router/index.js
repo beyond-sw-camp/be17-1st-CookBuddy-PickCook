@@ -15,6 +15,8 @@ import CommunityDetail from '@/views/CommunityDetail.vue'
 import Shopping from '@/views/Shopping.vue'
 import Shopping_detail from '@/views/Shopping_detail.vue'
 import Refrigerator from '@/views/Refrigerator.vue'
+import Login from '@/views/Login.vue'
+import Signup from '@/views/Signup.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -22,12 +24,12 @@ const router = createRouter({
     {
       path: '/recipe',
       name: 'recipe',
-      component: Recipe,
+      component: Recipe
     },
     {
       path: '/recipe/detail',
       name: 'recipedetail',
-      component: RecipeDetail,
+      component: RecipeDetail
     },
     {
       path: '/community',
@@ -42,12 +44,12 @@ const router = createRouter({
     {
       path: '/shopping',
       name: 'shopping',
-      component: Shopping,
+      component: Shopping
     },
     {
-      path: '/shopping/detail',
+      path: '/shopping/detail/:id',
       name: 'shoppingdetail',
-      component: Shopping_detail,
+      component: Shopping_detail
     },
     {
       path: '/mypage',
@@ -65,13 +67,23 @@ const router = createRouter({
     {
       path: '/',
       name: 'main',
-      component: Main,
+      component: Main
     },
     {
       path: '/refrigerator',
       name: 'refrigerator',
-      component: Refrigerator,
+      component: Refrigerator
     },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login
+    },
+    {
+      path: '/signup',
+      name: 'signup',
+      component: Signup
+    }
   ],
 })
 
