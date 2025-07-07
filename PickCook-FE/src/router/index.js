@@ -1,5 +1,5 @@
 import Cart from '@/components/Cart.vue'
-import Info from '@/components/Info.vue'
+import UserInfo from '@/components/UserInfo.vue'
 import LikeList from '@/components/LikeList.vue'
 import OrderList from '@/components/OrderList.vue'
 import ReplyList from '@/components/ReplyList.vue'
@@ -14,6 +14,8 @@ import Community from '@/views/Community.vue'
 import CommunityDetail from '@/views/CommunityDetail.vue'
 import Shopping from '@/views/Shopping.vue'
 import Shopping_detail from '@/views/Shopping_detail.vue'
+import Refrigerator from '@/views/Refrigerator.vue'
+
 import Login from '@/views/Login.vue'
 import SignupTypeSelect from '@/views/SignupTypeselect.vue'
 import Signup from '@/views/Signup.vue'
@@ -24,32 +26,32 @@ const router = createRouter({
     {
       path: '/recipe',
       name: 'recipe',
-      component: Recipe,
+      component: Recipe
     },
     {
       path: '/recipe/detail',
       name: 'recipedetail',
-      component: RecipeDetail,
+      component: RecipeDetail
     },
     {
       path: '/community',
       name: 'community',
-      component: Community
+      component: Community,
     },
     {
-      path: '/community/detail',
+      path: '/community/:id',
       name: 'communityDetail',
-      component: CommunityDetail
+      component: CommunityDetail,
     },
     {
       path: '/shopping',
       name: 'shopping',
-      component: Shopping,
+      component: Shopping
     },
     {
-      path: '/shopping/detail',
+      path: '/shopping/detail/:id',
       name: 'shoppingdetail',
-      component: Shopping_detail,
+      component: Shopping_detail
     },
     {
       path: '/mypage',
@@ -60,15 +62,20 @@ const router = createRouter({
         { path: 'scrap_list', name: 'mypage-scrap', component: ScrapList },
         { path: 'like_list', name: 'mypage-like', component: LikeList },
         { path: 'reply_list', name: 'mypage-reply', component: ReplyList },
-        { path: 'info', name: 'mypage-info', component: Info },
+        { path: 'user_info', name: 'mypage-info', component: UserInfo },
         { path: 'write_list', name: 'mypage-write', component: WriteList },
       ],
     },
     {
       path: '/',
       name: 'main',
-      component: Main,
+      component: Main
     },
+    {
+      path: '/refrigerator',
+      name: 'refrigerator',
+      component: Refrigerator
+    }
     {
       path: '/login',
       name: 'login',

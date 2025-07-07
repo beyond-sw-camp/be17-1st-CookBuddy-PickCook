@@ -1,88 +1,142 @@
 <script setup>
+import { ref, onMounted, computed } from "vue";
+import { useRoute } from "vue-router";
+import shoppingAPI from "@/api/shopping";
+
+const route = useRoute()
+const product = ref(null)
+const loading = ref(true)
+const currentImageIndex = ref(0)
+const activeTab = ref('info')
+
+const productId = computed(() => route.params.id)
+
+onMounted(async () => {
+    try {
+        console.log('상품 ID:', productId.value)
+        product.value = await shoppingAPI.getProductDetail(productId.value)
+        console.log('받은 상품 데이터:', product.value)
+    } catch (error) {
+        console.error('상품 상세 로딩 실패:', error)
+        alert('상품을 찾을 수 없습니다.')
+    } finally {
+        loading.value = false
+    }
+})
+
+// 이미지 변경
+const changeMainImage = (index) => {
+  currentImageIndex.value = index
+}
+
+// 탭 변경
+const switchTab = (tab) => {
+  activeTab.value = tab
+}
 
 </script>
 
 <template>
-<div class="shopping-detail-container" data-product-id="1234">
-        <div class="shopping-detail-row">
-            <!-- 좌측 이미지 영역 -->
-            <div class="shopping-detail-col-half">
-                <!-- 메인 이미지 -->
-                <div class="main-image" id="mainImage"
-                    style="background-image: url('https://semie.cooking/image/contents/wn/cv/solcqifp/149437687iajp.jpg');">
-                </div>
 
-                <!-- 썸네일 -->
-                <div class="thumbnail-container" id="thumbnailContainer">
-                    <div class="thumbnail"
-                        style="background-image: url('https://cdn.pixabay.com/photo/2018/04/13/17/14/vegetable-skewer-3317060_1280.jpg');">
-                    </div>
-                    <div class="thumbnail"
-                        style="background-image: url('https://cdn.pixabay.com/photo/2015/05/31/13/59/salad-791891_1280.jpg');"></div>
-                    <div class="thumbnail"
-                        style="background-image: url('https://cdn.pixabay.com/photo/2014/12/20/13/59/vegetables-573958_1280.jpg');">
-                    </div>
-                </div>
-            </div><!-- 우측 상품 정보 -->
-            <div class="shopping-detail-col-half">
-                <h5 class="brand-name" id="brandName">유기농채소</h5>
-                <h2 class="product-title" id="productTitle">[오늘특가] 유기농 채소 모음전</h2>
+<div v-if="loading" class="loading">
+  상품 정보를 불러오는 중...
+</div>
 
-                <!-- 별점 -->
-                <div class="mb-2">
-                    <span class="product-rate" id="productRating">
-                        <i class="fas fa-star" style="color: #ffc107;"></i>
-                        <i class="fas fa-star" style="color: #ffc107;"></i>
-                        <i class="fas fa-star" style="color: #ffc107;"></i>
-                        <i class="fas fa-star" style="color: #ffc107;"></i>
-                        <i class="fas fa-star-half-alt" style="color: #ffc107;"></i>
-                    </span>
-                    <span class="text-muted" id="reviewSummary">4.8 (리뷰 1,234)</span>
-                </div>
-
-                <!-- 서브 설명 -->
-                <p class="text-secondary" id="productSubDesc">유기농 채소를 한 번에! 건강한 식단을 위한 선택</p>
-
-                <!-- 가격 정보 -->
-                <div class="mb-3" id="priceSection">
-                    <span class="discount-rate"
-                        style="color: #dc3545; font-weight: bold; font-size: 18px;">30%</span>&nbsp;
-                    <span class="fs-4 fw-bold text-primary" id="salePrice">15,900원</span>&nbsp;
-                    <span class="text-decoration-line-through text-muted" id="originalPrice">22,900원</span>
-                </div>
-
-                <!-- 상세 정보 리스트 -->
-                <ul class="text-muted" id="productDetails">
-                    <li>유형: 유기농 인증 채소 모음</li>
-                    <li>구성: 랜덤 구성 채소 5~6종</li>
-                    <li>보관: 냉장 보관 권장 (0~10℃)</li>
-                    <li>배송비: 무료배송</li>
-                </ul>
-
-                <!-- 버튼 -->
-                <div class="d-flex gap-2 mt-4">
-                    <button class="btn btn-outline-secondary flex-fill" id="addToCartBtn">장바구니</button>
-                    <button class="btn btn-danger flex-fill" id="buyNowBtn">바로구매</button>
-                </div>
+<div v-else-if="product" class="shopping-detail-container">
+    <div class="shopping-detail-row">
+        <!-- 좌측 이미지 영역 -->
+        <div class="shopping-detail-col-half">
+            <!-- 메인 이미지 -->
+            <div class="main-image" 
+                :style="`background-image: url('${product.images ? product.images[currentImageIndex] : product.image}')`">
             </div>
 
+            <!-- 썸네일 -->
+            <div v-if="product.images && product.images.length > 1" class="thumbnail-container">
+                <div 
+                    v-for="(image, index) in product.images" 
+                    :key="index"
+                    class="thumbnail"
+                    :class="{ active: currentImageIndex === index }"
+                    :style="`background-image: url('${image}')`"
+                    @click="changeMainImage(index)"
+                >
+                </div>
+            </div>
+        </div>
+
+        <!-- 우측 상품 정보 -->
+        <div class="shopping-detail-col-half">
+            <h5 class="brand-name">{{ product.detailInfo?.brand || '브랜드명' }}</h5>
+            <h2 class="product-title">{{ product.title }}</h2>
+
+            <!-- 별점 -->
+            <div class="mb-2">
+                <span class="product-rate">
+                    <i v-for="n in 5" :key="n" 
+                       class="fas fa-star"
+                       style="color: #ffc107;">
+                    </i>
+                </span>
+                <span class="text-muted">{{ product.rating }} (리뷰 {{ product.reviewCount?.toLocaleString() }})</span>
+            </div>
+
+            <!-- 서브 설명 -->
+            <p class="text-secondary">{{ product.description }}</p>
+
+            <!-- 가격 정보 -->
+            <div class="mb-3">
+                <span class="discount-rate">{{ product.discount }}%</span>&nbsp;
+                <span class="fs-4 fw-bold text-primary">{{ product.price?.toLocaleString() }}원</span>&nbsp;
+                <span class="text-decoration-line-through text-muted">{{ product.originalPrice?.toLocaleString() }}원</span>
+            </div>
+
+            <!-- 상세 정보 리스트 -->
+            <ul class="text-muted">
+                <li>브랜드: {{ product.detailInfo?.brand || '-' }}</li>
+                <li>원산지: {{ product.detailInfo?.origin || '-' }}</li>
+                <li>중량: {{ product.detailInfo?.weight || '-' }}</li>
+                <li>보관: {{ product.detailInfo?.storage || '-' }}</li>
+            </ul>
+
+            <!-- 태그 -->
+            <div v-if="product.tags" class="tags">
+                <span v-for="tag in product.tags" :key="tag" class="tag">#{{ tag }}</span>
+            </div>
         </div>
     </div>
-    <!-- 탭 영역 -->
-    <div class="tab-section">
-        <div class="tab-nav">
-            <button class="tab-button active" data-tab="info">상품정보</button>
-            <button class="tab-button" data-tab="review">리뷰</button>
+
+    <!-- 상품 정보 섹션 (탭 제거, 모든 정보 한 번에 표시) -->
+    <div class="product-info-section">
+        <h3>상세 정보</h3>
+        <p>{{ product.description }}</p>
+        
+        <div v-if="product.ingredients" class="ingredients">
+            <h4>구성품</h4>
+            <ul>
+                <li v-for="ingredient in product.ingredients" :key="ingredient">
+                    {{ ingredient }}
+                </li>
+            </ul>
         </div>
-        <!-- 상품 정보 탭 -->
-        <div class="tab-content active" id="tab-info">
-            <p>여기는 상품 정보입니다. 상품의 상세 설명이나 이미지 등을 보여줄 수 있습니다.</p>
-        </div>
-        <!-- 리뷰 탭 -->
-        <div class="tab-content" id="tab-review">
-            <p>여기는 리뷰 영역입니다. 사용자 리뷰나 평점을 보여줄 수 있습니다.</p>
+
+        <div v-if="product.reviews" class="reviews">
+            <h4>고객 리뷰</h4>
+            <div v-for="review in product.reviews" :key="review.userId" class="review-item">
+                <div class="review-header">
+                    <span class="reviewer">{{ review.userId }}</span>
+                    <span class="review-rating">★ {{ review.rating }}</span>
+                    <span class="review-date">{{ review.date }}</span>
+                </div>
+                <p class="review-content">{{ review.content }}</p>
+            </div>
         </div>
     </div>
+</div>
+
+<div v-else class="error">
+  상품을 찾을 수 없습니다.
+</div>
 </template>
 
 <style scoped>

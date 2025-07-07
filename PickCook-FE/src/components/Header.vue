@@ -1,30 +1,41 @@
 <script setup>
+import { RouterLink, useRoute } from 'vue-router'
 
+const route = useRoute()
+
+// 경로 확인
+const isActive = (path) => {
+  if (path === '/') {
+    return route.path === '/'
+  } else {
+    return route.path.startsWith(path)
+  }
+}
 </script>
 
 <template>
-<header class="header">
+  <header class="header">
         <div class="header-top">
-            <a href="/index.html" class="logo">PickCook</a>
+          <RouterLink to="/" class="logo">PickCook</RouterLink>
             <nav class="nav-menu">
-                <a href="/index.html" class="active">홈</a>
-                <a href="/refrigerator.html">냉장고</a>
-                <a href="/recipe.html">레시피</a>
-                <a href="/shopping.html">쇼핑</a>
-                <a href="/community.html">커뮤니티</a>
+                <RouterLink to="/" :class="{ active: isActive('/') }">홈</RouterLink>
+                <RouterLink to="/refrigerator" :class="{ active: isActive('/refrigerator') }">냉장고</RouterLink>
+                <RouterLink to="/recipe" :class="{ active: isActive('/recipe') }">레시피</RouterLink>
+                <RouterLink to="/shopping" :class="{ active: isActive('/shopping') }">쇼핑</RouterLink>
+                <RouterLink to="/community" :class="{ active: isActive('/community') }">커뮤니티</RouterLink>
             </nav>
             <div class="search-bar">
                 <input type="text" placeholder="통합검색">
                 <span>🔍</span>
             </div>
             <div class="header-right">
-                <a href="/login.html">로그인</a>
-                <a href="/signup_type_select.html">회원가입</a>
+                <RouterLink to="/login">로그인</RouterLink>
+                <RouterLink to="/signup">회원가입</RouterLink>
                 <a href="#">고객센터</a>
                 <a href="#" class="write-btn">글쓰기 &nbsp;&nbsp;▼</a>
             </div>
         </div>
-    </header>
+  </header>
 </template>
 
 <style scoped>
