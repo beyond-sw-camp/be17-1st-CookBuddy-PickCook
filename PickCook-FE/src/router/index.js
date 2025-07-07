@@ -16,6 +16,9 @@ import Shopping from '@/views/Shopping.vue'
 import Shopping_detail from '@/views/Shopping_detail.vue'
 import Refrigerator from '@/views/Refrigerator.vue'
 
+import Login from '@/views/Login.vue'
+import SignupTypeSelect from '@/views/SignupTypeSelect.vue'
+import Signup from '@/views/Signup.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -72,7 +75,25 @@ const router = createRouter({
       path: '/refrigerator',
       name: 'refrigerator',
       component: Refrigerator
-    }
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login,
+      meta: { hideLayout: true },
+    },
+    {
+      path: '/signup',
+      name: 'signup',
+      component: SignupTypeSelect,
+      meta: { hideLayout: true },
+    },
+    {
+      path: '/signup/write',
+      name: 'signup_write',
+      component: Signup,
+      meta: { hideLayout: true },
+    },
   ],
 })
 
